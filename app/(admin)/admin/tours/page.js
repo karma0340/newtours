@@ -5,7 +5,10 @@ import dbConnect from "@/lib/db";
 import Tour from "@/models/Tour";
 import Image from "next/image";
 import TourActions from "@/components/TourActions";
+<<<<<<< HEAD
 import RefreshButton from "@/components/RefreshButton";
+=======
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
 
 async function getTours() {
     await dbConnect();
@@ -18,6 +21,7 @@ export default async function AdminToursPage() {
 
     return (
         <div>
+<<<<<<< HEAD
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
                 <div>
                     <h1 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">
@@ -31,6 +35,14 @@ export default async function AdminToursPage() {
                         Add New Tour
                     </Link>
                 </div>
+=======
+            <div className="flex justify-between items-center mb-8">
+                <h1 className="text-2xl font-bold text-gray-900">Manage Tours</h1>
+                <Link href="/admin/tours/new" className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 flex items-center gap-2">
+                    <Plus size={16} />
+                    Add New Tour
+                </Link>
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
             </div>
 
             {/* Table UI */}

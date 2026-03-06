@@ -14,7 +14,11 @@
     "clsx": "^2.1.1",
     "framer-motion": "^12.29.2",
     "lucide-react": "^0.563.0",
+<<<<<<< HEAD
     "mongoose": "^9.2.4",
+=======
+    "mongoose": "^9.1.5",
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
     "next": "16.1.6",
     "next-auth": "^4.24.13",
     "razorpay": "^2.9.6",

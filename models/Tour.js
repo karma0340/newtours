@@ -60,10 +60,13 @@ const TourSchema = new mongoose.Schema(
             type: Number,
             default: 0,
         },
+<<<<<<< HEAD
         category: {
             type: [String],
             default: [],
         },
+=======
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
     },
     { timestamps: true }
 );

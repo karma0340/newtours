@@ -21,10 +21,13 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'lh3.googleusercontent.com', // For Google Auth profile pictures
       },
+<<<<<<< HEAD
       {
         protocol: 'https',
         hostname: 'via.placeholder.com',
       },
+=======
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
     ],
   },
 };

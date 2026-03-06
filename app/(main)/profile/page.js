@@ -7,7 +7,11 @@ import Link from "next/link";
 import dbConnect from "@/lib/db";
 import Booking from "@/models/Booking";
 import Tour from "@/models/Tour"; // Ensure Tour model is registered
+<<<<<<< HEAD
 import { MapPin, Calendar, CreditCard, Clock, ArrowLeft } from "lucide-react";
+=======
+import { MapPin, Calendar, CreditCard, Clock } from "lucide-react";
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
 
 async function getUserBookings(userId) {
     await dbConnect();
@@ -28,6 +32,7 @@ export default async function ProfilePage() {
     const bookings = await getUserBookings(session.user.id);
 
     return (
+<<<<<<< HEAD
         <div className="bg-gray-50 min-h-screen py-12 pt-32">
             <div className="container mx-auto px-4 max-w-5xl">
                 <div className="mb-6">
@@ -38,12 +43,19 @@ export default async function ProfilePage() {
                 </div>
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-12">
                     <div className="h-32 bg-gradient-to-r from-blue-700 to-indigo-800"></div>
+=======
+        <div className="bg-gray-50 min-h-screen py-12">
+            <div className="container mx-auto px-4">
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-12">
+                    <div className="h-32 bg-blue-600"></div>
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                     <div className="px-8 pb-8">
                         <div className="relative flex justify-between items-end -mt-12 mb-6">
                             <div className="relative">
                                 <img
                                     src={session.user.image || `https://ui-avatars.com/api/?name=${session.user.name}`}
                                     alt={session.user.name}
+<<<<<<< HEAD
                                     className="w-24 h-24 rounded-full border-4 border-white bg-white shadow-lg object-cover"
                                 />
                             </div>
@@ -54,6 +66,20 @@ export default async function ProfilePage() {
                                 <span className="w-2 h-2 rounded-full bg-green-500" />
                                 {session.user.email}
                             </p>
+=======
+                                    className="w-24 h-24 rounded-full border-4 border-white bg-white"
+                                />
+                            </div>
+                            <div className="mb-2">
+                                <button className="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                                    Edit Profile
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <h1 className="text-2xl font-bold text-gray-900">{session.user.name}</h1>
+                            <p className="text-gray-500">{session.user.email}</p>
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                         </div>
                     </div>
                 </div>
@@ -88,8 +114,13 @@ export default async function ProfilePage() {
                                         <div className="flex justify-between items-start mb-2">
                                             <h3 className="text-xl font-bold text-gray-900">{booking.tour?.title}</h3>
                                             <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase ${booking.status === 'confirmed' ? 'bg-green-100 text-green-700' :
+<<<<<<< HEAD
                                                 booking.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
                                                     'bg-red-100 text-red-700'
+=======
+                                                    booking.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
+                                                        'bg-red-100 text-red-700'
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                                                 }`}>
                                                 {booking.status}
                                             </span>

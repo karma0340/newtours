@@ -11,6 +11,7 @@ const BookingSchema = new mongoose.Schema(
         tour: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Tour",
+<<<<<<< HEAD
             required: false,
         },
         destination: {
@@ -21,6 +22,9 @@ const BookingSchema = new mongoose.Schema(
         },
         duration: {
             type: String,
+=======
+            required: true,
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
         },
         bookingDate: {
             type: Date,
@@ -52,10 +56,13 @@ const BookingSchema = new mongoose.Schema(
             enum: ["pending", "paid", "failed"],
             default: "pending",
         },
+<<<<<<< HEAD
         phone: {
             type: String,
             required: [true, "Please provide a contact number"],
         },
+=======
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
         specialRequests: {
             type: String,
         },

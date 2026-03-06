@@ -1,5 +1,8 @@
 
+<<<<<<< HEAD
 import mongoose from "mongoose";
+=======
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"; // Assuming I exported authOptions from lib/authOptions.js but I imported it there. Wait, I should verify import path.
@@ -19,6 +22,7 @@ export async function POST(req) {
         return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
+<<<<<<< HEAD
 
     try {
         const body = await req.json();
@@ -46,11 +50,30 @@ export async function POST(req) {
             totalPrice: totalPrice || 0,
             phone,
             specialRequests,
+=======
+    try {
+        const body = await req.json();
+        const { tourId, travelers, travelDate, totalPrice } = body;
+
+        await dbConnect();
+
+        // Optional: Check tour availability
+        const tour = await Tour.findById(tourId);
+        if (!tour) return NextResponse.json({ message: "Tour not found" }, { status: 404 });
+
+        const newBooking = await Booking.create({
+            user: session.user.id, // Assuming session.user.id is populated in authOptions callback
+            tour: tourId,
+            travelers,
+            travelDate,
+            totalPrice,
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
             status: "pending",
             paymentStatus: "pending"
         });
 
         return NextResponse.json({
+<<<<<<< HEAD
             message: "Booking request received successfully",
             bookingId: newBooking._id
         }, { status: 201 });
@@ -65,5 +88,14 @@ export async function POST(req) {
         }
 
         return NextResponse.json({ message: "Something went wrong on the server" }, { status: 500 });
+=======
+            message: "Booking created",
+            bookingId: newBooking._id
+        }, { status: 201 });
+
+    } catch (error) {
+        console.error("Booking error:", error);
+        return NextResponse.json({ message: "Internal Error" }, { status: 500 });
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
     }
 }

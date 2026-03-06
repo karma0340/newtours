@@ -37,8 +37,13 @@ const Navbar = () => {
                         <Link href="/tours" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
                             Tours
                         </Link>
+<<<<<<< HEAD
                         <Link href="/bookings" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
                             My Bookings
+=======
+                        <Link href="/about" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
+                            About
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                         </Link>
                         <Link href="/contact" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
                             Contact
@@ -85,7 +90,11 @@ const Navbar = () => {
                                             )}
 
                                             <Link
+<<<<<<< HEAD
                                                 href="/bookings"
+=======
+                                                href="/profile"
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
                                                 onClick={() => setUserMenuOpen(false)}
                                             >
@@ -152,11 +161,19 @@ const Navbar = () => {
                                 Tours
                             </Link>
                             <Link
+<<<<<<< HEAD
                                 href="/bookings"
                                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md"
                                 onClick={toggleMenu}
                             >
                                 My Bookings
+=======
+                                href="/about"
+                                className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md"
+                                onClick={toggleMenu}
+                            >
+                                About
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                             </Link>
                             <Link
                                 href="/contact"
@@ -170,11 +187,19 @@ const Navbar = () => {
                                 <>
                                     <div className="border-t border-gray-100 my-2"></div>
                                     <Link
+<<<<<<< HEAD
                                         href="/bookings"
                                         className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md"
                                         onClick={toggleMenu}
                                     >
                                         My Bookings
+=======
+                                        href="/profile"
+                                        className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md"
+                                        onClick={toggleMenu}
+                                    >
+                                        My Profile
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                                     </Link>
                                     {session.user.role === 'admin' && (
                                         <Link

@@ -2,6 +2,7 @@
 "use client";
 
 import Link from "next/link";
+<<<<<<< HEAD
 import { Search, MapPin, Calendar, Users, Star, X, Clock, Compass, Sparkles, Check, Zap, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
@@ -108,6 +109,13 @@ export default function Home() {
     const { data: session } = useSession();
     const [selectedTour, setSelectedTour] = useState(null);
     const [destination, setDestination] = useState("");
+=======
+import { motion } from "framer-motion";
+import { Search, MapPin, Calendar, Users, Star } from "lucide-react";
+import Image from "next/image";
+
+export default function Home() {
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
     const featuredTours = [
         {
             id: 1,
@@ -143,11 +151,14 @@ export default function Home() {
 
     return (
         <div className="bg-white">
+<<<<<<< HEAD
             <AnimatePresence>
                 {selectedTour && (
                     <TourDetailsModal tour={selectedTour} onClose={() => setSelectedTour(null)} />
                 )}
             </AnimatePresence>
+=======
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
             {/* Hero Section */}
             <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
                 {/* Background Image */}
@@ -195,6 +206,7 @@ export default function Home() {
                                 <input
                                     type="text"
                                     placeholder="Where do you want to go?"
+<<<<<<< HEAD
                                     value={destination}
                                     onChange={(e) => setDestination(e.target.value)}
                                     onKeyDown={(e) => {
@@ -204,6 +216,8 @@ export default function Home() {
                                             window.location.href = `/tours?${params.toString()}`;
                                         }
                                     }}
+=======
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                                     className="w-full bg-transparent outline-none text-gray-700 placeholder-gray-400"
                                 />
                             </div>
@@ -226,6 +240,7 @@ export default function Home() {
                                 </select>
                             </div>
 
+<<<<<<< HEAD
                             <button
                                 onClick={() => {
                                     const params = new URLSearchParams();
@@ -236,17 +251,25 @@ export default function Home() {
                             >
                                 Search
                             </button>
+=======
+                            <Link href="/tours" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg shadow-blue-600/30 flex items-center justify-center">
+                                Search
+                            </Link>
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                         </div>
                     </motion.div>
                 </div>
             </section>
 
+<<<<<<< HEAD
             {/* Categories Section */}
             <Categories />
 
             {/* Tour Packages Section */}
             <TourPackages />
 
+=======
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
             {/* Featured Destinations */}
             <section className="py-24 bg-gray-50">
                 <div className="container mx-auto px-4">
@@ -257,8 +280,13 @@ export default function Home() {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {featuredTours.map((tour) => (
+<<<<<<< HEAD
                             <div key={tour.id} className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col items-start h-full">
                                 <div className="relative h-64 w-full overflow-hidden">
+=======
+                            <div key={tour.id} className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100">
+                                <div className="relative h-64 overflow-hidden">
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                                     <Image
                                         src={tour.image}
                                         alt={tour.title}
@@ -270,9 +298,15 @@ export default function Home() {
                                         {tour.rating}
                                     </div>
                                 </div>
+<<<<<<< HEAD
                                 <div className="p-6 flex flex-col flex-1 w-full">
                                     <div className="flex justify-between items-start mb-2">
                                         <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+=======
+                                <div className="p-6">
+                                    <div className="flex justify-between items-start mb-2">
+                                        <h3 className="text-xl font-bold text-gray-900">
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                                             {tour.title}
                                         </h3>
                                     </div>
@@ -280,20 +314,33 @@ export default function Home() {
                                         <MapPin size={14} className="mr-1" />
                                         {tour.location}
                                     </div>
+<<<<<<< HEAD
                                     <p className="text-gray-600 mb-6 line-clamp-2 flex-1">
                                         {tour.description}
                                     </p>
                                     <div className="flex flex-col gap-3 pt-4 border-t border-gray-100 lg:flex-row lg:items-center lg:justify-between">
+=======
+                                    <p className="text-gray-600 mb-6 line-clamp-2">
+                                        {tour.description}
+                                    </p>
+                                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                                         <div className="flex flex-col">
                                             <span className="text-xs text-gray-500">Starting from</span>
                                             <span className="text-lg font-bold text-blue-600">${tour.price}</span>
                                         </div>
+<<<<<<< HEAD
                                         <button
                                             onClick={() => setSelectedTour(tour)}
                                             className="flex items-center justify-center px-4 py-2 bg-gray-900 text-white rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors w-full lg:w-auto"
                                         >
                                             View Details
                                         </button>
+=======
+                                        <Link href={`/tours/${tour.slug}`} className="px-4 py-2 bg-gray-900 text-white rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors">
+                                            View Details
+                                        </Link>
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                                     </div>
                                 </div>
                             </div>
@@ -308,7 +355,10 @@ export default function Home() {
                 </div>
             </section>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
             {/* Features Section */}
             <section className="py-24 bg-white">
                 <div className="container mx-auto px-4">
@@ -351,7 +401,11 @@ export default function Home() {
                 <div className="container mx-auto px-4 relative z-10 text-center">
                     <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Ready for your next adventure?</h2>
                     <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">Join thousands of travelers who have found their perfect trip with NewTours. Sign up today to get exclusive offers.</p>
+<<<<<<< HEAD
                     <Link href={session ? "/tours" : "/login"} className="bg-blue-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-blue-500 transition-all shadow-xl shadow-blue-900/50">
+=======
+                    <Link href="/login" className="bg-blue-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-blue-500 transition-all shadow-xl shadow-blue-900/50">
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                         Get Started
                     </Link>
                 </div>

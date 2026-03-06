@@ -41,6 +41,7 @@ export async function GET() {
         // Create Tours
         const tours = [
             {
+<<<<<<< HEAD
                 title: "Manali – Solang Valley Escape",
                 slug: "manali-solang-valley",
                 destination: "Manali, Himachal Pradesh",
@@ -150,6 +151,8 @@ export async function GET() {
                 ]
             },
             {
+=======
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                 title: "Paris Explorer",
                 slug: "paris-explorer",
                 destination: "Paris, France",
@@ -162,7 +165,10 @@ export async function GET() {
                 availableSeats: 20,
                 rating: 4.8,
                 numReviews: 12,
+<<<<<<< HEAD
                 category: ["international", "culture"],
+=======
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                 itinerary: [
                     { day: 1, title: "Arrival", details: "Arrive in Paris and transfer to hotel." },
                     { day: 2, title: "City Tour", details: "Visit the Eiffel Tower and Louvre Museum." },
@@ -184,7 +190,10 @@ export async function GET() {
                 availableSeats: 15,
                 rating: 4.9,
                 numReviews: 25,
+<<<<<<< HEAD
                 category: ["international", "culture", "adventure"],
+=======
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                 itinerary: [
                     { day: 1, title: "Arrival in Tokyo", details: "Welcome dinner and check-in." },
                     { day: 2, title: "Shibuya & Harajuku", details: "Walking tour of fashion districts." },
@@ -205,7 +214,10 @@ export async function GET() {
                 availableSeats: 30,
                 rating: 4.7,
                 numReviews: 18,
+<<<<<<< HEAD
                 category: ["international", "nature", "spiritual"],
+=======
+>>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                 itinerary: [
                     { day: 1, title: "Welcome to Bali", details: "Airport pickup and resort check-in." },
                     { day: 2, title: "Ubud Tour", details: "Visit the Monkey Forest and rice terraces." },
