@@ -22,8 +22,8 @@ export async function GET() {
         // Create Admin User
         const hashedPassword = await bcrypt.hash("admin123", 10);
         await User.create({
-            name: "Admin User",
-            email: "admin@example.com",
+            name: "Administrator",
+            email: "admin",
             password: hashedPassword,
             role: "admin",
             provider: "credentials"
@@ -41,14 +41,13 @@ export async function GET() {
         // Create Tours
         const tours = [
             {
-<<<<<<< HEAD
                 title: "Manali – Solang Valley Escape",
                 slug: "manali-solang-valley",
                 destination: "Manali, Himachal Pradesh",
                 description: "Experience the magic of Manali with Solang Valley, Rohtang Pass, and riverside camping.",
                 price: 8499,
                 duration: "5 Days / 4 Nights",
-                images: ["https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=800&auto=format&fit=crop"],
+                images: ["/images/hero/contact.jpg"],
                 featured: true,
                 startDate: new Date("2026-06-01"),
                 availableSeats: 20,
@@ -67,7 +66,7 @@ export async function GET() {
                 description: "Explore the stark beauty of Spiti Valley with Key Monastery and Chandratal Lake.",
                 price: 14999,
                 duration: "8 Days / 7 Nights",
-                images: ["https://images.unsplash.com/photo-1598091383021-15ddea10925d?q=80&w=800&auto=format&fit=crop"],
+                images: ["/images/hero/tour-hero.jpg"],
                 featured: true,
                 startDate: new Date("2026-07-01"),
                 availableSeats: 15,
@@ -85,7 +84,7 @@ export async function GET() {
                 description: "Relax in the historical hill station of Shimla and enjoy the snow in Kufri.",
                 price: 6499,
                 duration: "4 Days / 3 Nights",
-                images: ["https://images.unsplash.com/photo-1597074866923-dc0589150358?q=80&w=800&auto=format&fit=crop"],
+                images: ["/images/hero/home.jpg"],
                 featured: true,
                 startDate: new Date("2026-05-15"),
                 availableSeats: 25,
@@ -103,7 +102,7 @@ export async function GET() {
                 description: "A popular trek to the hot springs of Kheerganga through the mystical Parvati Valley.",
                 price: 9299,
                 duration: "6 Days / 5 Nights",
-                images: ["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800&auto=format&fit=crop"],
+                images: ["/images/hero/about-team.jpg"],
                 featured: true,
                 startDate: new Date("2026-06-10"),
                 availableSeats: 20,
@@ -121,7 +120,7 @@ export async function GET() {
                 description: "Immerse yourself in Tibetan culture and spirituality in the home of the Dalai Lama.",
                 price: 7799,
                 duration: "5 Days / 4 Nights",
-                images: ["https://images.unsplash.com/photo-1562602833-0f4ab2fc46e3?q=80&w=800&auto=format&fit=crop"],
+                images: ["/images/hero/about.jpg"],
                 featured: true,
                 startDate: new Date("2026-08-01"),
                 availableSeats: 30,
@@ -139,7 +138,7 @@ export async function GET() {
                 description: "Fly like a bird from one of the highest paragliding sites in the world.",
                 price: 5999,
                 duration: "3 Days / 2 Nights",
-                images: ["https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=800&auto=format&fit=crop"],
+                images: ["/images/hero/home.jpg"],
                 featured: true,
                 startDate: new Date("2026-09-01"),
                 availableSeats: 15,
@@ -150,79 +149,6 @@ export async function GET() {
                     { day: 1, title: "Bir Arrival", details: "Explore the local monasteries." },
                 ]
             },
-            {
-=======
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
-                title: "Paris Explorer",
-                slug: "paris-explorer",
-                destination: "Paris, France",
-                description: "Explore the city of love with our comprehensive 5-day tour.",
-                price: 1299,
-                duration: "5 Days / 4 Nights",
-                images: ["https://images.unsplash.com/photo-1431274172761-fca41d930114?q=80&w=800&auto=format&fit=crop"],
-                featured: true,
-                startDate: new Date("2026-06-01"),
-                availableSeats: 20,
-                rating: 4.8,
-                numReviews: 12,
-<<<<<<< HEAD
-                category: ["international", "culture"],
-=======
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
-                itinerary: [
-                    { day: 1, title: "Arrival", details: "Arrive in Paris and transfer to hotel." },
-                    { day: 2, title: "City Tour", details: "Visit the Eiffel Tower and Louvre Museum." },
-                    { day: 3, title: "Versailles", details: "Day trip to the Palace of Versailles." },
-                    { day: 4, title: "Free Day", details: "Explore the city at your own leisure." },
-                    { day: 5, title: "Departure", details: "Transfer to airport for departure." },
-                ]
-            },
-            {
-                title: "Tokyo Adventure",
-                slug: "tokyo-adventure",
-                destination: "Tokyo, Japan",
-                description: "Experience the perfect blend of tradition and future in Tokyo.",
-                price: 1599,
-                duration: "7 Days / 6 Nights",
-                images: ["https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=800&auto=format&fit=crop"],
-                featured: true,
-                startDate: new Date("2026-07-15"),
-                availableSeats: 15,
-                rating: 4.9,
-                numReviews: 25,
-<<<<<<< HEAD
-                category: ["international", "culture", "adventure"],
-=======
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
-                itinerary: [
-                    { day: 1, title: "Arrival in Tokyo", details: "Welcome dinner and check-in." },
-                    { day: 2, title: "Shibuya & Harajuku", details: "Walking tour of fashion districts." },
-                    { day: 3, title: "Asakusa & Temples", details: "Visit Senso-ji temple and traditional streets." },
-                    { day: 4, title: "Kyoto Day Trip", details: "Bullet train to Kyoto." },
-                ]
-            },
-            {
-                title: "Bali Bliss",
-                slug: "bali-bliss",
-                destination: "Bali, Indonesia",
-                description: "Relax on the beautiful beaches of Bali.",
-                price: 899,
-                duration: "6 Days / 5 Nights",
-                images: ["https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=800&auto=format&fit=crop"],
-                featured: true,
-                startDate: new Date("2026-08-10"),
-                availableSeats: 30,
-                rating: 4.7,
-                numReviews: 18,
-<<<<<<< HEAD
-                category: ["international", "nature", "spiritual"],
-=======
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
-                itinerary: [
-                    { day: 1, title: "Welcome to Bali", details: "Airport pickup and resort check-in." },
-                    { day: 2, title: "Ubud Tour", details: "Visit the Monkey Forest and rice terraces." },
-                ]
-            }
         ];
 
         await Tour.insertMany(tours);

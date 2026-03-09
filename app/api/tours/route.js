@@ -5,6 +5,21 @@ import Tour from "@/models/Tour";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 
+export async function GET() {
+    try {
+        await dbConnect();
+        // Optimization: Lean queries and projections for listing
+        const tours = await Tour.find({})
+            .select('title images image price location duration rating numReviews slug badge category')
+            .sort({ createdAt: -1 })
+            .lean();
+        return NextResponse.json(tours);
+    } catch (error) {
+        console.error("Error fetching tours:", error);
+        return NextResponse.json({ message: "Error fetching tours" }, { status: 500 });
+    }
+}
+
 export async function POST(req) {
     try {
         const session = await getServerSession(authOptions);

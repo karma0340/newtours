@@ -26,6 +26,24 @@ const TourSchema = new mongoose.Schema(
             type: Number,
             required: [true, "Please provide a price"],
         },
+        originalPrice: {
+            type: Number,
+        },
+        badge: {
+            type: String,
+        },
+        badgeColor: {
+            type: String,
+            default: "bg-blue-600",
+        },
+        highlights: {
+            type: [String],
+            default: [],
+        },
+        inclusions: {
+            type: [String],
+            default: [],
+        },
         duration: {
             type: String, // e.g., "3 Days / 2 Nights"
             required: [true, "Please provide duration"],
@@ -60,13 +78,10 @@ const TourSchema = new mongoose.Schema(
             type: Number,
             default: 0,
         },
-<<<<<<< HEAD
         category: {
             type: [String],
             default: [],
         },
-=======
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
     },
     { timestamps: true }
 );

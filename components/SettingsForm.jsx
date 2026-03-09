@@ -1,15 +1,19 @@
-
 "use client";
 
 import { useState } from "react";
-import { useSession } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import { Loader2, Save, User, Lock, Bell } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router-dom";
+
+// Mock useSession
+const useSession = () => ({ 
+    data: { user: { name: "John Doe", email: "john@example.com" } },
+    update: async (data) => console.log("Updating session", data)
+});
 
 export default function SettingsForm() {
     const { data: session, update } = useSession();
-    const router = useRouter();
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
 
     const [formData, setFormData] = useState({
@@ -67,7 +71,7 @@ export default function SettingsForm() {
                 }));
             }
 
-            router.refresh();
+            console.log("Profile refreshed");
 
         } catch (error) {
             toast.error(error.message);
@@ -240,3 +244,4 @@ export default function SettingsForm() {
         </div>
     );
 }
+

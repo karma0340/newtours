@@ -2,13 +2,10 @@
 "use client";
 
 import { useState } from "react";
-<<<<<<< HEAD
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, Instagram, MessageSquare, Clock, Globe } from "lucide-react";
-=======
-import { Mail, Phone, MapPin, Send } from "lucide-react";
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
 import { toast } from "react-hot-toast";
+import Image from "next/image";
 
 export default function ContactPage() {
     const [loading, setLoading] = useState(false);
@@ -16,30 +13,27 @@ export default function ContactPage() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoading(true);
-        // Simulate API call
         setTimeout(() => {
-<<<<<<< HEAD
             toast.success("Message received! Our Himalayan experts will reach out shortly.");
-=======
-            toast.success("Message sent successfully! We'll get back to you soon.");
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
             setLoading(false);
             e.target.reset();
         }, 1500);
     };
 
     return (
-<<<<<<< HEAD
         <div className="bg-[#fcfcfd] min-h-screen">
             {/* Hero Section */}
-            <div className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-                <div className="absolute inset-0">
-                    <img
-                        src="/contact-hero.png"
-                        alt="Himalayan Mountains"
-                        className="w-full h-full object-cover scale-105"
+            <div className="relative h-[50vh] min-h-[450px] flex items-center justify-center overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/images/hero/contact.jpg"
+                        alt="Himachal Mountains"
+                        fill
+                        className="object-cover scale-105"
+                        priority
+                        sizes="100vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#fcfcfd]" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-[#fcfcfd]" />
                 </div>
 
                 <div className="relative z-10 text-center px-4 pt-10">
@@ -56,7 +50,7 @@ export default function ContactPage() {
                         transition={{ delay: 0.1 }}
                         className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight"
                     >
-                        Start Your <span className="text-blue-500">Journey</span>
+                        Start Your <span className="text-blue-500 italic">Journey</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -119,7 +113,7 @@ export default function ContactPage() {
                                     <div>
                                         <h3 className="font-black text-gray-900 uppercase tracking-widest text-[10px] mb-2">Official Email</h3>
                                         <p className="text-gray-700 font-bold transition-colors group-hover:text-violet-600 break-all">
-                                            info.hikethehimalaya@gmail.com
+                                            info.hikethehimalya@gmail.com
                                         </p>
                                     </div>
                                 </div>
@@ -128,7 +122,7 @@ export default function ContactPage() {
                             <div className="mt-12 pt-10 border-t border-gray-100">
                                 <h4 className="font-extrabold text-gray-900 mb-6 text-sm uppercase tracking-widest">Follow Our Expedition</h4>
                                 <a
-                                    href="https://www.instagram.com/hikethehimalaya.in?igsh=MTB5c3p5ZzhoeHlkaw=="
+                                    href="#"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-3 bg-gradient-to-r from-[#f09433] via-[#e6683c] to-[#bc1888] text-white p-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-pink-500/20"
@@ -236,7 +230,7 @@ export default function ContactPage() {
                 </div>
             </div>
 
-            {/* Map Placeholder/Brand Detail */}
+            {/* Brand Detail */}
             <div className="bg-white border-t border-gray-100 py-24">
                 <div className="max-w-7xl mx-auto px-4 text-center">
                     <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-blue-50 text-blue-600 mb-8">
@@ -263,92 +257,6 @@ export default function ContactPage() {
                             <p className="text-2xl font-black text-gray-900">100%</p>
                             <p className="text-xs font-black text-gray-400 uppercase tracking-widest">Safe Travel</p>
                         </div>
-=======
-        <div className="bg-white min-h-screen">
-            <div className="relative py-24 bg-blue-900 overflow-hidden">
-                <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-                <div className="container mx-auto px-4 relative z-10 text-center text-white">
-                    <h1 className="text-4xl md:text-6xl font-bold mb-6">Contact Us</h1>
-                    <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-                        Have questions? We're here to help. Reach out to our team.
-                    </p>
-                </div>
-            </div>
-
-            <div className="container mx-auto px-4 py-16">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    {/* Contact Info */}
-                    <div>
-                        <h2 className="text-3xl font-bold text-gray-900 mb-8">Get in Touch</h2>
-                        <div className="space-y-8">
-                            <div className="flex items-start gap-4">
-                                <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
-                                    <MapPin size={24} />
-                                </div>
-                                <div>
-                                    <h3 className="font-bold text-gray-900 text-lg mb-1">Visit Us</h3>
-                                    <p className="text-gray-600">123 Travel Street, Adventure City<br />AC 56789, United States</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="w-12 h-12 bg-green-50 text-green-600 rounded-xl flex items-center justify-center shrink-0">
-                                    <Phone size={24} />
-                                </div>
-                                <div>
-                                    <h3 className="font-bold text-gray-900 text-lg mb-1">Call Us</h3>
-                                    <p className="text-gray-600">Mon-Fri from 9am to 6pm.</p>
-                                    <p className="text-blue-600 font-bold mt-1">+1 (555) 123-4567</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center shrink-0">
-                                    <Mail size={24} />
-                                </div>
-                                <div>
-                                    <h3 className="font-bold text-gray-900 text-lg mb-1">Email Us</h3>
-                                    <p className="text-gray-600">Our friendly team is here to help.</p>
-                                    <p className="text-blue-600 font-bold mt-1">hello@newtours.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Contact Form */}
-                    <div className="bg-gray-50 p-8 rounded-3xl border border-gray-100">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                                    <input type="text" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" placeholder="John" />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                                    <input type="text" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" placeholder="Doe" />
-                                </div>
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                                <input type="email" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" placeholder="john@example.com" />
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                                <textarea required rows="4" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" placeholder="How can we help you?"></textarea>
-                            </div>
-
-                            <button
-                                type="submit"
-                                disabled={loading}
-                                className="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2"
-                            >
-                                {loading ? 'Sending...' : <><Send size={18} /> Send Message</>}
-                            </button>
-                        </form>
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                     </div>
                 </div>
             </div>

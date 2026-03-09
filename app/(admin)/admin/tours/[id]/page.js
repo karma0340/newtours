@@ -1,5 +1,5 @@
 
-import TourForm from "@/components/TourForm";
+import TourForm from "@/components/admin/TourForm";
 import dbConnect from "@/lib/db";
 import Tour from "@/models/Tour";
 import { notFound } from "next/navigation";

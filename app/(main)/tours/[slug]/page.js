@@ -1,20 +1,11 @@
 
 import Image from "next/image";
-<<<<<<< HEAD
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MapPin, Clock, Star, Share2, Heart, ShieldCheck, CheckCircle2, ChevronRight, ArrowLeft, Info, Calendar, Sparkles } from "lucide-react";
+import { MapPin, Clock, Star, Share2, Heart, ShieldCheck, CheckCircle2, ChevronRight, ArrowLeft, Info, Calendar, Sparkles, Bus, Car } from "lucide-react";
 import dbConnect from "@/lib/db";
 import Tour from "@/models/Tour";
 import BookingForm from "@/components/BookingForm";
-=======
-import { notFound } from "next/navigation";
-import { MapPin, Clock, Star, Calendar, CheckCircle } from "lucide-react";
-import dbConnect from "@/lib/db";
-import Tour from "@/models/Tour";
-import BookingForm from "@/components/BookingForm";
-import Reviews from "@/components/Reviews";
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
 
 async function getTour(slug) {
     await dbConnect();
@@ -23,22 +14,18 @@ async function getTour(slug) {
     return JSON.parse(JSON.stringify(tour));
 }
 
-<<<<<<< HEAD
+// NextJS native caching instruction to cache this page logic instead of repeatedly calling db
+export const revalidate = 3600; // Cache this dynamic route for an hour
+
 export default async function TourDetailsPage({ params }) {
     const { slug } = await params;
     const tour = await getTour(slug);
-=======
-export default async function TourDetailsPage(props) {
-    const params = await props.params;
-    const tour = await getTour(params.slug);
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
 
     if (!tour) {
         notFound();
     }
 
     return (
-<<<<<<< HEAD
         <div className="bg-white min-h-screen">
             {/* Top Navigation / Breadcrumbs Bar */}
             <div className="bg-gray-900 py-4 border-b border-white/5 sticky top-0 z-[60] backdrop-blur-md bg-gray-900/90">
@@ -68,16 +55,10 @@ export default async function TourDetailsPage(props) {
 
             {/* Hero Gallery Section */}
             <div className="relative h-[60vh] md:h-[75vh] w-full overflow-hidden bg-gray-900">
-=======
-        <div className="bg-white min-h-screen pb-20">
-            {/* Hero Header */}
-            <div className="relative h-[60vh] w-full">
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                 <Image
-                    src={tour.images[0] || 'https://via.placeholder.com/1920x1080'}
+                    src={tour.images[0] || '/images/hero/vehicle-default.jpg'}
                     alt={tour.title}
                     fill
-<<<<<<< HEAD
                     className="object-cover opacity-80"
                     priority
                 />
@@ -113,32 +94,11 @@ export default async function TourDetailsPage(props) {
                                     <span className="flex items-center gap-2 text-xl font-bold"><Info size={20} className="text-green-500" /> Up to 15 People</span>
                                 </div>
                             </div>
-=======
-                    className="object-cover"
-                    priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-8 container mx-auto">
-                    <h1 className="text-4xl md:text-6xl font-bold text-white mb-2">{tour.title}</h1>
-                    <div className="flex flex-wrap items-center gap-4 text-gray-200">
-                        <div className="flex items-center gap-1">
-                            <MapPin size={18} className="text-blue-400" />
-                            {tour.destination}
-                        </div>
-                        <div className="flex items-center gap-1">
-                            <Clock size={18} className="text-blue-400" />
-                            {tour.duration}
-                        </div>
-                        <div className="flex items-center gap-1">
-                            <Star size={18} className="text-yellow-400 fill-yellow-400" />
-                            {tour.rating} ({tour.numReviews} reviews)
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                         </div>
                     </div>
                 </div>
             </div>
 
-<<<<<<< HEAD
             <div className="container mx-auto px-4 py-16">
                 <div className="flex flex-col lg:flex-row gap-16">
                     {/* Main Content Area */}
@@ -167,40 +127,12 @@ export default async function TourDetailsPage(props) {
                                         <div>
                                             <h4 className="font-black text-gray-900 uppercase text-xs tracking-widest mb-1">{item.title}</h4>
                                             <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
-=======
-            <div className="container mx-auto px-4 py-12">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    {/* Main Content */}
-                    <div className="lg:col-span-2 space-y-12">
-                        <section>
-                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Overview</h2>
-                            <p className="text-gray-600 leading-relaxed text-lg">
-                                {tour.description}
-                            </p>
-                        </section>
-
-                        <section>
-                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Itinerary</h2>
-                            <div className="space-y-6">
-                                {tour.itinerary.map((item, index) => (
-                                    <div key={index} className="flex gap-4 group">
-                                        <div className="flex flex-col items-center">
-                                            <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                                                {item.day}
-                                            </div>
-                                            <div className="h-full w-0.5 bg-gray-100 my-2 group-last:hidden"></div>
-                                        </div>
-                                        <div className="pb-6">
-                                            <h3 className="font-bold text-gray-900 text-lg mb-2">{item.title}</h3>
-                                            <p className="text-gray-600">{item.details}</p>
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                                         </div>
                                     </div>
                                 ))}
                             </div>
                         </section>
 
-<<<<<<< HEAD
                         {/* Itinerary Section */}
                         <section>
                             <div className="flex items-center gap-3 mb-10">
@@ -233,7 +165,54 @@ export default async function TourDetailsPage(props) {
                             </div>
                         </section>
 
-                        {/* Inclusions & Exclusions */}
+                        {/* Itinerary Section ... (lines 134-162) */}
+
+                        {/* Premium Logistics Section */}
+                        <section className="bg-gray-900 rounded-[3rem] p-12 overflow-hidden relative border border-white/5 shadow-2xl">
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600 rounded-full blur-[120px] opacity-10" />
+                            <div className="relative z-10">
+                                <div className="flex items-center gap-3 mb-8">
+                                    <div className="w-1.5 h-10 bg-blue-500 rounded-full" />
+                                    <h2 className="text-3xl font-black text-white tracking-tight uppercase">Premium Logistics</h2>
+                                </div>
+                                <p className="text-gray-400 text-lg mb-12 font-medium max-w-2xl leading-relaxed">
+                                    We believe the journey itself should be as majestic as the destination. That's why we utilize our own elite fleet for all Himachal expeditions.
+                                </p>
+                                
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-[2.5rem] group hover:bg-white/10 transition-all">
+                                        <div className="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
+                                            <Bus size={28} />
+                                        </div>
+                                        <h4 className="text-white font-black text-xl mb-3">Group Transfers</h4>
+                                        <p className="text-gray-500 text-sm leading-relaxed">
+                                            Luxury Volvo Multi-Axle buses with air-suspension and ergonomic reclining seats for long-distance comfort.
+                                        </p>
+                                    </div>
+                                    <div className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-[2.5rem] group hover:bg-white/10 transition-all">
+                                        <div className="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
+                                            <Car size={28} />
+                                        </div>
+                                        <h4 className="text-white font-black text-xl mb-3">Mountain Squad</h4>
+                                        <p className="text-gray-500 text-sm leading-relaxed">
+                                            Specialized SUV fleet including Innova Crysta and Scorpio 4x4 for reaching remote base camps and high-altitude valleys.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div className="mt-12 pt-10 border-t border-white/5 flex flex-wrap gap-8">
+                                    <div className="flex items-center gap-3 text-gray-400 text-sm font-bold uppercase tracking-widest">
+                                        <CheckCircle2 size={18} className="text-blue-500" /> Professional Drivers
+                                    </div>
+                                    <div className="flex items-center gap-3 text-gray-400 text-sm font-bold uppercase tracking-widest">
+                                        <CheckCircle2 size={18} className="text-blue-500" /> Carrier & Ropes
+                                    </div>
+                                    <div className="flex items-center gap-3 text-gray-400 text-sm font-bold uppercase tracking-widest">
+                                        <CheckCircle2 size={18} className="text-blue-500" /> 24/7 Assistance
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                         <section className="grid grid-cols-1 md:grid-cols-2 gap-10">
                             <div className="bg-blue-50/50 p-10 rounded-[2.5rem] border border-blue-100/50">
                                 <h3 className="text-xl font-black text-blue-900 mb-8 flex items-center gap-3">
@@ -270,7 +249,7 @@ export default async function TourDetailsPage(props) {
                             <BookingForm tour={tour} />
 
                             <div className="mt-8 bg-blue-900 p-8 rounded-[2.5rem] text-white overflow-hidden relative shadow-2xl">
-                                <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
+                                <div className="absolute inset-0 opacity-10 bg-[url('/images/hero/vehicle-default.jpg')]" />
                                 <div className="relative z-10">
                                     <h4 className="text-xl font-black mb-4 flex items-center gap-2 tracking-tight">
                                         <Info size={20} className="text-blue-400" /> Need Help?
@@ -283,42 +262,10 @@ export default async function TourDetailsPage(props) {
                                     </Link>
                                 </div>
                             </div>
-=======
-                        <section>
-                            <h2 className="text-2xl font-bold text-gray-900 mb-6">What's Included</h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div className="flex items-start gap-3">
-                                    <CheckCircle className="text-green-500 shrink-0 mt-0.5" size={20} />
-                                    <span className="text-gray-700">Accommodation in 4-star hotels</span>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                    <CheckCircle className="text-green-500 shrink-0 mt-0.5" size={20} />
-                                    <span className="text-gray-700">Daily Breakfast & Dinner</span>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                    <CheckCircle className="text-green-500 shrink-0 mt-0.5" size={20} />
-                                    <span className="text-gray-700">Professional Guide</span>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                    <CheckCircle className="text-green-500 shrink-0 mt-0.5" size={20} />
-                                    <span className="text-gray-700">Transportation in AC vehicle</span>
-                                </div>
-                            </div>
-                        </section>
-
-                        <Reviews tourId={tour._id} />
-                    </div>
-
-                    {/* Sidebar - Booking Form */}
-                    <div className="lg:col-span-1">
-                        <div className="sticky top-24">
-                            <BookingForm tour={tour} />
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
                         </div>
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
 
             {/* CTA Section */}
             <section className="py-24 bg-gray-50">
@@ -341,8 +288,6 @@ export default async function TourDetailsPage(props) {
                     </div>
                 </div>
             </section>
-=======
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
         </div>
     );
 }

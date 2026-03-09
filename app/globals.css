@@ -5,16 +5,6 @@
   --foreground: #171717;
 }
 
-<<<<<<< HEAD
-=======
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -25,14 +15,10 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-<<<<<<< HEAD
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
 }
 
 html {
   overflow-x: hidden;
 }
-=======
-}
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870

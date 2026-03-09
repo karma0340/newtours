@@ -4,11 +4,8 @@ import { Plus } from "lucide-react";
 import dbConnect from "@/lib/db";
 import Tour from "@/models/Tour";
 import Image from "next/image";
-import TourActions from "@/components/TourActions";
-<<<<<<< HEAD
-import RefreshButton from "@/components/RefreshButton";
-=======
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
+import TourActions from "@/components/admin/TourActions";
+import RefreshButton from "@/components/admin/RefreshButton";
 
 async function getTours() {
     await dbConnect();
@@ -21,7 +18,6 @@ export default async function AdminToursPage() {
 
     return (
         <div>
-<<<<<<< HEAD
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
                 <div>
                     <h1 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">
@@ -35,14 +31,6 @@ export default async function AdminToursPage() {
                         Add New Tour
                     </Link>
                 </div>
-=======
-            <div className="flex justify-between items-center mb-8">
-                <h1 className="text-2xl font-bold text-gray-900">Manage Tours</h1>
-                <Link href="/admin/tours/new" className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 flex items-center gap-2">
-                    <Plus size={16} />
-                    Add New Tour
-                </Link>
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
             </div>
 
             {/* Table UI */}
@@ -63,11 +51,11 @@ export default async function AdminToursPage() {
                                 <tr key={tour._id} className="hover:bg-gray-50/50">
                                     <td className="p-4">
                                         <div className="w-12 h-12 relative rounded-lg overflow-hidden bg-gray-100">
-                                            <Image src={tour.images[0] || 'https://via.placeholder.com/150'} alt={tour.title} fill className="object-cover" />
+                                            <Image src={tour.images[0] || '/images/hero/vehicle-default.jpg'} alt={tour.title} fill className="object-cover" />
                                         </div>
                                     </td>
                                     <td className="p-4 font-medium text-gray-900">{tour.title}</td>
-                                    <td className="p-4 text-gray-600">${tour.price}</td>
+                                    <td className="p-4 text-gray-600">₹{tour.price}</td>
                                     <td className="p-4 text-gray-600">{tour.destination}</td>
                                     <td className="p-4 text-right">
                                         <TourActions tourId={tour._id.toString()} />

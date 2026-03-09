@@ -1,7 +1,15 @@
+import AdminSidebar from "@/components/admin/AdminSidebar";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/authOptions";
+import { redirect } from "next/navigation";
 
-import AdminSidebar from "@/components/AdminSidebar";
+export default async function AdminLayout({ children }) {
+    const session = await getServerSession(authOptions);
 
-export default function AdminLayout({ children }) {
+    if (!session || session.user.role !== "admin") {
+        redirect("/login");
+    }
+
     return (
         <div className="flex min-h-screen bg-gray-50">
             <AdminSidebar />

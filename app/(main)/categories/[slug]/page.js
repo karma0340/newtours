@@ -13,42 +13,42 @@ const categoryData = {
         description: "Conquer high-altitude base camps and majestic peaks in the Himalayas.",
         icon: <Mountain className="w-12 h-12" />,
         color: "from-blue-600 to-indigo-800",
-        bgPattern: "https://www.transparenttextures.com/patterns/cubes.png"
+        bgPattern: ""
     },
     adventure: {
         title: "Action & Adventure",
         description: "Feel the rush with paragliding, river rafting, and mountain skiing.",
         icon: <Zap className="w-12 h-12" />,
         color: "from-orange-500 to-red-700",
-        bgPattern: "https://www.transparenttextures.com/patterns/carbon-fibre.png"
+        bgPattern: ""
     },
     spiritual: {
         title: "Spiritual Journeys",
         description: "Discover inner peace in ancient temples, monasteries, and sacred valleys.",
         icon: <Infinity className="w-12 h-12" />,
         color: "from-purple-600 to-deep-purple-900",
-        bgPattern: "https://www.transparenttextures.com/patterns/diagmonds-light.png"
+        bgPattern: ""
     },
     nature: {
         title: "Nature & Wilderness",
         description: "Experience lush valleys, cascading waterfalls, and serene pine forests.",
         icon: <Trees className="w-12 h-12" />,
         color: "from-green-500 to-teal-800",
-        bgPattern: "https://www.transparenttextures.com/patterns/leaf.png"
+        bgPattern: ""
     },
     offbeat: {
         title: "Offbeat Explorations",
         description: "Explore hidden gems and remote cultures like Spiti, Jibhi, and Zanskar.",
         icon: <Map className="w-12 h-12" />,
         color: "from-teal-500 to-blue-900",
-        bgPattern: "https://www.transparenttextures.com/patterns/glamorous.png"
+        bgPattern: ""
     },
     culture: {
         title: "Cultural Immersion",
         description: "Immerse yourself in local traditions, festivals, and Himalayan lifestyle.",
         icon: <Music className="w-12 h-12" />,
         color: "from-rose-500 to-pink-900",
-        bgPattern: "https://www.transparenttextures.com/patterns/food.png"
+        bgPattern: ""
     }
 };
 
@@ -142,10 +142,11 @@ export default async function CategoryPage({ params }) {
                                 <div className="bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
                                     <div className="relative h-64 w-full overflow-hidden">
                                         <Image
-                                            src={tour.images[0] || 'https://via.placeholder.com/800x600'}
+                                            src={tour.images?.[0] || tour.image || '/images/hero/vehicle-default.jpg'}
                                             alt={tour.title}
                                             fill
                                             className="object-cover group-hover:scale-110 transition-transform duration-700"
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 

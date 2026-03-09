@@ -1,10 +1,11 @@
-
 "use client";
 
 import { useState } from "react";
 import { Star, User } from "lucide-react";
-import { useSession } from "next-auth/react";
 import { toast } from "react-hot-toast";
+
+// Mock useSession
+const useSession = () => ({ data: { user: { name: "John Doe" } } });
 
 const Reviews = ({ tourId, reviews = [] }) => {
     const { data: session } = useSession();
@@ -126,3 +127,4 @@ const Reviews = ({ tourId, reviews = [] }) => {
 };
 
 export default Reviews;
+

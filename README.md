@@ -1,5 +1,4 @@
-
-# NewTours - Travel Booking Application
+# Hike The Himalaya - Travel Booking Application
 
 A complete full-stack travel booking application built with Next.js 14, MongoDB, and Tailwind CSS.
 

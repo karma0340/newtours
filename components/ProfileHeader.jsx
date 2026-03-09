@@ -13,7 +13,7 @@ export default function ProfileHeader({ user }) {
                 <div className="relative flex justify-between items-end -mt-12 mb-6">
                     <div className="relative">
                         <img
-                            src={user.image || `https://ui-avatars.com/api/?name=${user.name}`}
+                            src={user.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=0066FF&color=fff`}
                             alt={user.name}
                             className="w-24 h-24 rounded-full border-4 border-white bg-white shadow-lg object-cover"
                         />
@@ -52,3 +52,4 @@ export default function ProfileHeader({ user }) {
         </div>
     );
 }
+

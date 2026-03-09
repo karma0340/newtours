@@ -2,24 +2,24 @@
   "name": "newtours",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
+    "dev:turbo": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
-    "axios": "^1.13.4",
     "bcryptjs": "^3.0.3",
     "clsx": "^2.1.1",
+    "dotenv": "^17.3.1",
     "framer-motion": "^12.29.2",
+    "ioredis": "^5.10.0",
+    "lenis": "^1.3.18",
     "lucide-react": "^0.563.0",
-<<<<<<< HEAD
     "mongoose": "^9.2.4",
-=======
-    "mongoose": "^9.1.5",
->>>>>>> 83f301b40ffdd3faf73ceb2a984eb25694f39870
-    "next": "16.1.6",
+    "next": "15.1.7",
     "next-auth": "^4.24.13",
     "razorpay": "^2.9.6",
     "react": "19.2.3",
@@ -27,13 +27,14 @@
     "react-dom": "19.2.3",
     "react-hook-form": "^7.71.1",
     "react-hot-toast": "^2.6.0",
+    "react-router-dom": "^7.1.3",
+    "sharp": "^0.34.5",
     "tailwind-merge": "^3.4.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
-    "eslint-config-next": "16.1.6",
     "tailwindcss": "^4"
   }
 }

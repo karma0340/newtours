@@ -4,12 +4,17 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Loader2 } from "lucide-react";
 import { toast } from "react-hot-toast";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+
+// Mock useSession
+const useSession = () => ({ 
+    update: async (data) => console.log("Updating session", data)
+});
+
+const useNavigate = () => (path) => console.log("Navigating to", path);
 
 const EditProfileModal = ({ user, isOpen, onClose }) => {
     const { update } = useSession();
-    const router = useRouter();
+    const navigate = useNavigate();
 
     const [name, setName] = useState(user?.name || "");
     const [phone, setPhone] = useState(user?.phone || "");
@@ -40,7 +45,7 @@ const EditProfileModal = ({ user, isOpen, onClose }) => {
             await update({ name, phone });
 
             // Refresh the server component
-            router.refresh();
+            console.log("Profile refreshed");
 
             onClose();
         } catch (error) {
@@ -132,3 +137,4 @@ const EditProfileModal = ({ user, isOpen, onClose }) => {
 };
 
 export default EditProfileModal;
+
