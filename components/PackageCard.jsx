@@ -40,14 +40,14 @@ export default function PackageCard({ pkg, index, onBook }) {
                 <div className="absolute bottom-4 left-4 flex items-center gap-1 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
                     <Star size={12} className="text-yellow-400 fill-yellow-400" />
                     <span className="text-xs font-bold text-gray-800">{pkg.rating}</span>
-                    <span className="text-xs text-gray-500">({pkg.reviews || 0})</span>
+                    <span className="text-xs text-gray-500">({pkg.numReviews || 0})</span>
                 </div>
             </div>
 
             <div className="p-4 sm:p-6 flex flex-col flex-grow">
                 <div className="flex items-start gap-1 text-blue-600 text-xs font-semibold mb-2">
                     <MapPin size={12} className="mt-0.5 shrink-0" />
-                    <span>{pkg.location}</span>
+                    <span>{pkg.destination}</span>
                 </div>
 
                 <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 group-hover:text-blue-700 transition-colors leading-snug line-clamp-2">

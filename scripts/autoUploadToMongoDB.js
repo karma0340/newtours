@@ -63,8 +63,7 @@ async function uploadImages() {
                 .toFile(destPath);
 
             tour.image = publicUrl;
-            if (!tour.images) tour.images = [];
-            tour.images = [publicUrl, ...tour.images.filter(img => !img.includes(publicUrl))];
+            tour.images = [publicUrl];
             
             await tour.save();
             updatedTours++;
@@ -99,8 +98,7 @@ async function uploadImages() {
                 .toFile(destPath);
 
             vehicle.image = publicUrl;
-            if (!vehicle.images) vehicle.images = [];
-            vehicle.images = [publicUrl, ...vehicle.images.filter(img => !img.includes(publicUrl))];
+            vehicle.images = [publicUrl];
 
             await vehicle.save();
             updatedVehicles++;
