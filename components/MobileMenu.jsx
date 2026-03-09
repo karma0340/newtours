@@ -25,10 +25,7 @@ export default function MobileMenu({ isOpen, onClose, session }) {
                     exit={{ opacity: 0, y: -10 }}
                     className="md:hidden bg-white border-b border-gray-100 overflow-hidden shadow-2xl"
                 >
-                    <div className="px-6 pt-6 pb-2 flex items-center gap-3 border-b border-gray-50 mb-2">
-                        <Logo />
-                    </div>
-                    <div className="px-4 pt-2 pb-8 space-y-2">
+                    <div className="px-4 pt-12 pb-8 space-y-2">
                         {navLinks.map((item) => (
                             <Link
                                 key={item.name}

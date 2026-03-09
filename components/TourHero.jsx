@@ -3,18 +3,12 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import HeroSlider from "./HeroSlider";
 
 export default function TourHero() {
     return (
         <section className="relative h-[40vh] min-h-[300px] flex items-center justify-center overflow-hidden">
-            <div className="absolute inset-0 z-0">
-                <img
-                    src="/images/hero/tour-hero.jpg"
-                    alt="Himalayan Adventure"
-                    className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-gray-50/50" />
-            </div>
+            <HeroSlider opacity="opacity-70" overlayColor="from-black/60 via-black/30 to-gray-50/50" />
 
             <div className="relative z-10 text-center px-4">
                 <motion.div

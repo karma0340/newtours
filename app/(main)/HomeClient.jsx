@@ -17,19 +17,19 @@ export default function HomeClient({ featuredTours }) {
         <>
             <AnimatePresence>
                 {selectedTour && (
-                    <TourDetailsModal 
-                        pkg={selectedTour} 
-                        onClose={() => setSelectedTour(null)} 
+                    <TourDetailsModal
+                        pkg={selectedTour}
+                        onClose={() => setSelectedTour(null)}
                         viewType="tour"
                         onBook={() => {
                             // Link to booking or handle as needed
                             window.location.href = `/tours/${selectedTour.slug}`;
-                        }} 
+                        }}
                     />
                 )}
             </AnimatePresence>
 
-            <section className="py-24 bg-gray-50 overflow-hidden">
+            <section className="py-12 md:py-20 bg-gray-50 overflow-hidden">
                 <div className="container mx-auto px-4">
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
                         <div className="max-w-2xl">
@@ -58,8 +58,8 @@ export default function HomeClient({ featuredTours }) {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         {featuredTours.map((tour, index) => (
-                            <motion.div 
-                                key={tour._id} 
+                            <motion.div
+                                key={tour._id}
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.1 }}
@@ -75,7 +75,7 @@ export default function HomeClient({ featuredTours }) {
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                    
+
                                     <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 flex items-center gap-1 shadow-sm z-10">
                                         <Star size={12} className="text-yellow-400 fill-yellow-400" />
                                         {tour.rating}
@@ -93,11 +93,11 @@ export default function HomeClient({ featuredTours }) {
                                         <MapPin size={12} className="mr-1.5" />
                                         {tour.location || tour.destination}
                                     </div>
-                                    
+
                                     <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
                                         {tour.title}
                                     </h3>
-                                    
+
                                     <p className="text-gray-500 text-sm mb-6 line-clamp-3 leading-relaxed">
                                         {tour.description}
                                     </p>

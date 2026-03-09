@@ -58,11 +58,11 @@ const TourPackages = ({ initialTours }) => {
         fetchTours();
     }, [initialTours]);
 
-    const filtered = useMemo(() => 
+    const filtered = useMemo(() =>
         activeTab === "all"
             ? tours
             : tours.filter((p) => p.category?.includes(activeTab)),
-    [activeTab, tours]);
+        [activeTab, tours]);
 
     if (loading) {
         return (
@@ -73,16 +73,16 @@ const TourPackages = ({ initialTours }) => {
     }
 
     return (
-        <section className="py-12 md:py-24 bg-gray-50 relative">
+        <section className="py-10 md:py-20 bg-gray-50 relative">
             <AnimatePresence>
                 {selectedDetailsPkg && (
-                    <TourDetailsModal 
-                        pkg={selectedDetailsPkg} 
-                        onClose={() => setSelectedDetailsPkg(null)} 
+                    <TourDetailsModal
+                        pkg={selectedDetailsPkg}
+                        onClose={() => setSelectedDetailsPkg(null)}
                         onBook={(pkg) => {
                             setSelectedDetailsPkg(null);
                             setSelectedBookingPkg(pkg);
-                        }} 
+                        }}
                     />
                 )}
                 {selectedBookingPkg && (

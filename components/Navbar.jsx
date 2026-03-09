@@ -21,9 +21,9 @@ const Navbar = () => {
     return (
         <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between h-20 items-center">
+                <div className="flex justify-between h-26 items-center">
                     <Link href="/" className="flex-shrink-0 group transition-transform hover:scale-105 active:scale-95" prefetch={true}>
-                        <Logo />
+                        <Logo variant="dark" priority={true} />
                     </Link>
 
                     {/* Desktop Menu */}
@@ -46,10 +46,10 @@ const Navbar = () => {
 
                         {/* User Auth */}
                         {session ? (
-                            <UserMenu 
-                                session={session} 
-                                isOpen={userMenuOpen} 
-                                onClose={() => setUserMenuOpen(false)} 
+                            <UserMenu
+                                session={session}
+                                isOpen={userMenuOpen}
+                                onClose={() => setUserMenuOpen(false)}
                                 onToggle={toggleUserMenu}
                             />
                         ) : (

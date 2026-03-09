@@ -6,6 +6,7 @@ import { MapPin, Clock, Star, Share2, Heart, ShieldCheck, CheckCircle2, ChevronR
 import dbConnect from "@/lib/db";
 import Tour from "@/models/Tour";
 import BookingForm from "@/components/BookingForm";
+import HeroSlider from "@/components/HeroSlider";
 
 async function getTour(slug) {
     await dbConnect();
@@ -55,14 +56,7 @@ export default async function TourDetailsPage({ params }) {
 
             {/* Hero Gallery Section */}
             <div className="relative h-[60vh] md:h-[75vh] w-full overflow-hidden bg-gray-900">
-                <Image
-                    src={tour.images[0] || '/images/hero/vehicle-default.jpg'}
-                    alt={tour.title}
-                    fill
-                    className="object-cover opacity-80"
-                    priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/20 to-transparent" />
+                <HeroSlider opacity="opacity-80" overlayColor="from-gray-950 via-gray-950/20 to-transparent" />
 
                 <div className="absolute bottom-12 left-0 w-full">
                     <div className="container mx-auto px-4">
@@ -178,7 +172,7 @@ export default async function TourDetailsPage({ params }) {
                                 <p className="text-gray-400 text-lg mb-12 font-medium max-w-2xl leading-relaxed">
                                     We believe the journey itself should be as majestic as the destination. That's why we utilize our own elite fleet for all Himachal expeditions.
                                 </p>
-                                
+
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     <div className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-[2.5rem] group hover:bg-white/10 transition-all">
                                         <div className="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
@@ -199,7 +193,7 @@ export default async function TourDetailsPage({ params }) {
                                         </p>
                                     </div>
                                 </div>
-                                
+
                                 <div className="mt-12 pt-10 border-t border-white/5 flex flex-wrap gap-8">
                                     <div className="flex items-center gap-3 text-gray-400 text-sm font-bold uppercase tracking-widest">
                                         <CheckCircle2 size={18} className="text-blue-500" /> Professional Drivers
@@ -249,7 +243,7 @@ export default async function TourDetailsPage({ params }) {
                             <BookingForm tour={tour} />
 
                             <div className="mt-8 bg-blue-900 p-8 rounded-[2.5rem] text-white overflow-hidden relative shadow-2xl">
-                                <div className="absolute inset-0 opacity-10 bg-[url('/images/hero/vehicle-default.jpg')]" />
+                                <div className="absolute inset-0 opacity-10 bg-[url('/images/hero/contact_new_wide.png')] bg-cover bg-center" />
                                 <div className="relative z-10">
                                     <h4 className="text-xl font-black mb-4 flex items-center gap-2 tracking-tight">
                                         <Info size={20} className="text-blue-400" /> Need Help?

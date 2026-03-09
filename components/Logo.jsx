@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from "next/image";
 
-const Logo = ({ className = "", variant = "light" }) => {
+const Logo = ({ className = "", variant = "light", priority = false }) => {
     const textColor = variant === "light" ? "text-white" : "text-gray-900";
-    
+
     return (
         <div className={`flex items-center gap-3 ${className}`}>
             <div className="relative flex items-center group">
@@ -13,25 +13,24 @@ const Logo = ({ className = "", variant = "light" }) => {
                     'mix-blend-mode: multiply' or 'screen' can remove the background 
                     without changing the content colors.
                 */}
-                <div className="relative w-24 h-24 overflow-hidden">
-                    <Image 
-                        src="/hikethehimalyalogo.jpeg" 
-                        alt="Logo Icon" 
+                {/* Logo Icon - Enlarged universally for all screen sizes */}
+                <div className="relative w-38 h-38 overflow-hidden flex items-center justify-center shrink-0">
+                    <Image
+                        src="/hikethehimalyalogo.png"
+                        alt="Logo Icon"
                         fill
+                        sizes="112px"
                         className="object-contain"
-                        style={{ 
-                            mixBlendMode: variant === 'light' ? 'screen' : 'multiply',
-                            filter: 'contrast(1.2)' // Sharpening slightly for better visibility
-                        }}
+                        priority={priority}
                     />
                 </div>
-                
+
                 {/* Branding Text */}
-                <div className="flex flex-col ml-1 leading-[0.9]">
-                    <span className={`font-black text-2xl tracking-tighter uppercase ${textColor}`}>
+                <div className="flex flex-col ml-2 leading-none shrink-0">
+                    <span className={`font-black text-2xl tracking-tight uppercase ${textColor}`}>
                         Hike The
                     </span>
-                    <span className="font-black text-2xl tracking-tighter uppercase text-blue-600">
+                    <span className="font-black text-2xl tracking-tight uppercase text-blue-600">
                         Himalaya
                     </span>
                 </div>

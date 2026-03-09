@@ -5,6 +5,7 @@ import { MapPin, Clock, Star, ArrowLeft, Mountain, Zap, Infinity, Trees, Map, Mu
 import dbConnect from "@/lib/db";
 import Tour from "@/models/Tour";
 import { notFound } from "next/navigation";
+import HeroSlider from "@/components/HeroSlider";
 
 // Category configuration
 const categoryData = {
@@ -77,7 +78,7 @@ export default async function CategoryPage({ params }) {
         <div className="bg-gray-50 min-h-screen pb-20">
             {/* Header */}
             <div className={`bg-gradient-to-br ${category.color} pt-24 pb-32 text-center text-white relative overflow-hidden`}>
-                <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `url('${category.bgPattern}')` }}></div>
+                <HeroSlider opacity="opacity-30" overlayColor={`from-${category.color.split(' ')[0].split('-')[1]}-900/80 via-transparent to-transparent`} />
 
                 {/* Back Link */}
                 <div className="absolute top-10 left-8 z-20">

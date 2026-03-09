@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, Instagram, MessageSquare, Clock, Globe } from "lucide-react";
 import { toast } from "react-hot-toast";
 import Image from "next/image";
+import HeroSlider from "@/components/HeroSlider";
 
 export default function ContactPage() {
     const [loading, setLoading] = useState(false);
@@ -24,17 +25,7 @@ export default function ContactPage() {
         <div className="bg-[#fcfcfd] min-h-screen">
             {/* Hero Section */}
             <div className="relative h-[50vh] min-h-[450px] flex items-center justify-center overflow-hidden">
-                <div className="absolute inset-0 z-0">
-                    <Image
-                        src="/images/hero/contact.jpg"
-                        alt="Himachal Mountains"
-                        fill
-                        className="object-cover scale-105"
-                        priority
-                        sizes="100vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-[#fcfcfd]" />
-                </div>
+                <HeroSlider opacity="opacity-70" overlayColor="from-black/70 via-black/40 to-[#fcfcfd]" />
 
                 <div className="relative z-10 text-center px-4 pt-10">
                     <motion.span

@@ -1,23 +1,14 @@
 
 import Image from "next/image";
 import { Award, Users, Mountain, Heart, ShieldCheck, Bus, Truck, Compass, Car } from "lucide-react";
+import HeroSlider from "@/components/HeroSlider";
 
 export default function AboutPage() {
     return (
         <div className="bg-white">
             {/* Hero */}
             <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-gray-900">
-                <div className="absolute inset-0 z-0">
-                    <Image
-                        src="/images/hero/about.jpg"
-                        alt="Himalayan Peaks"
-                        fill
-                        className="object-cover opacity-60"
-                        priority
-                        sizes="100vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-white" />
-                </div>
+                <HeroSlider opacity="opacity-60" overlayColor="from-black/60 via-black/30 to-white" />
 
                 <div className="container mx-auto px-4 relative z-10 text-center">
                     <h1 className="text-5xl md:text-7xl font-black mb-6 text-white tracking-tight">
@@ -33,7 +24,7 @@ export default function AboutPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
                     <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
                         <Image
-                            src="/images/hero/about-team.jpg"
+                            src="/images/hero/about_team_wide.png"
                             alt="Our Team"
                             fill
                             className="object-cover"
@@ -102,7 +93,7 @@ export default function AboutPage() {
                 <div className="mt-32">
                     <div className="flex flex-col md:flex-row items-center gap-12 bg-gray-900 rounded-[3rem] p-12 md:p-20 relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600 rounded-full blur-[120px] opacity-20" />
-                        
+
                         <div className="max-w-xl relative z-10">
                             <span className="text-blue-400 font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">Our Infrastructure</span>
                             <h2 className="text-3xl md:text-5xl font-black text-white mb-8 leading-tight">We Own Our <span className="text-blue-500 italic">Fleet.</span></h2>

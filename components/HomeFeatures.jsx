@@ -8,7 +8,7 @@ export default function HomeFeatures() {
     return (
         <>
             {/* Features Section */}
-            <section className="py-24 bg-white overflow-hidden">
+            <section className="py-12 md:py-20 bg-white overflow-hidden">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         {[
@@ -17,8 +17,8 @@ export default function HomeFeatures() {
                             { icon: <Compass size={24} />, title: "Top Locations", desc: "Handpicked destinations by local Himalayan experts and guides.", color: "indigo" },
                             { icon: <Users size={24} />, title: "24/7 Support", desc: "Dedicated trip coordinators available round the clock during your trip.", color: "orange" }
                         ].map((feature, i) => (
-                            <motion.div 
-                                key={i} 
+                            <motion.div
+                                key={i}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
@@ -37,14 +37,14 @@ export default function HomeFeatures() {
             </section>
 
             {/* CTA Section */}
-            <section className="py-24 bg-gray-900 relative overflow-hidden rounded-[4rem] mx-4 mb-12 shadow-2xl">
+            <section className="py-12 md:py-20 bg-gray-900 relative overflow-hidden rounded-[4rem] mx-4 mb-12 shadow-2xl">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600 rounded-full blur-[150px] opacity-10" />
                 <div className="container mx-auto px-4 relative z-10 text-center">
                     <motion.div
-                         initial={{ opacity: 0, scale: 0.9 }}
-                         whileInView={{ opacity: 1, scale: 1 }}
-                         viewport={{ once: true }}
-                         className="max-w-4xl mx-auto"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        className="max-w-4xl mx-auto"
                     >
                         <h2 className="text-4xl md:text-6xl font-black text-white mb-8 tracking-tighter leading-tight">
                             Ready for your next <span className="italic text-blue-500">Epic</span> Himachal journey?

@@ -9,9 +9,10 @@ import HomeClient from "./HomeClient";
 import HomeFeatures from "@/components/HomeFeatures";
 import HeroSearch from "@/components/HeroSearch";
 import redis from "@/lib/redis";
+import HeroSlider from "@/components/HeroSlider";
 
 // Production level caching: Revalidate homepage every 1 hour
-export const revalidate = 3600; 
+export const revalidate = 3600;
 
 async function getHomeData() {
     // 1. Try fetching from Redis first
@@ -27,7 +28,7 @@ async function getHomeData() {
 
     console.log("🔍 Fetching Homepage from MongoDB");
     await dbConnect();
-    
+
     // Performance Optimization: Use Projections to only fetch fields visible on cards
     const [allTours, featured, allCategories] = await Promise.all([
         Tour.find({})
@@ -73,19 +74,12 @@ export default async function Home() {
 
     return (
         <div className="bg-white">
-            {/* Hero Section */}
-            <section className="relative h-[60vh] sm:h-[65vh] flex items-center justify-center overflow-hidden">
-                <div className="absolute inset-0 z-0">
-                    <Image
-                        src="/images/hero/home.jpg"
-                        alt="Travel Background"
-                        fill
-                        className="object-cover"
-                        priority
-                        sizes="100vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/55" />
-                </div>
+            {/* Hero Section - Added mt-20 to clear fixed navbar */}
+            <section className="relative mt-9 h-[75vh] sm:h-[65vh] flex items-center justify-center overflow-hidden">
+                <HeroSlider
+                    opacity="opacity-100"
+                    overlayColor="from-black/55 via-black/35 to-black/55"
+                />
 
                 <div className="relative z-10 w-full max-w-5xl mx-auto px-4 text-center">
                     <span className="inline-block text-blue-300 text-[11px] font-bold uppercase tracking-[0.25em] mb-4">

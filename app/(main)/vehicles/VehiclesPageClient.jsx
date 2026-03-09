@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Car, Loader2 } from "lucide-react";
 import dynamic from "next/dynamic";
+import HeroSlider from "@/components/HeroSlider";
 
 const VehicleInquiryModal = dynamic(() => import("@/components/VehicleInquiryModal"), {
     loading: () => <div className="fixed inset-0 z-[100] bg-black/50 backdrop-blur-md flex items-center justify-center"><Loader2 className="animate-spin text-white" size={40} /></div>,
@@ -20,28 +21,19 @@ export default function VehiclesPageClient({ initialVehicles }) {
         <div className="bg-gray-50 min-h-screen pb-20">
             <AnimatePresence>
                 {selectedVehicle && (
-                    <VehicleInquiryModal 
-                        vehicle={selectedVehicle} 
-                        onClose={() => setSelectedVehicle(null)} 
+                    <VehicleInquiryModal
+                        vehicle={selectedVehicle}
+                        onClose={() => setSelectedVehicle(null)}
                     />
                 )}
             </AnimatePresence>
 
             <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-gray-900">
-                <div className="absolute inset-0 z-0">
-                    <Image
-                        src="/images/hero/about.jpg"
-                        alt="Himachal Road Trip"
-                        fill
-                        className="object-cover opacity-60"
-                        priority
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-gray-50" />
-                </div>
+                <HeroSlider opacity="opacity-60" overlayColor="from-black/60 via-black/30 to-gray-50" />
 
                 <div className="container mx-auto px-4 relative z-10 text-center">
                     <div className="mb-6 flex justify-center">
-                        <motion.div 
+                        <motion.div
                             initial={{ rotate: 12, opacity: 0 }}
                             animate={{ rotate: 15, opacity: 1 }}
                             className="w-16 h-16 bg-blue-600 rounded-3xl flex items-center justify-center text-white shadow-2xl shadow-blue-600/40 rotate-12 group hover:rotate-0 transition-transform duration-500"
@@ -90,10 +82,10 @@ export default function VehiclesPageClient({ initialVehicles }) {
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {initialVehicles.map((vehicle, index) => (
-                            <VehicleCard 
-                                key={vehicle._id} 
-                                vehicle={vehicle} 
-                                index={index} 
+                            <VehicleCard
+                                key={vehicle._id}
+                                vehicle={vehicle}
+                                index={index}
                                 onInquire={(v) => setSelectedVehicle(v)}
                             />
                         ))}
