@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { Loader2, Plus, Minus, Image as ImageIcon } from "lucide-react";
 
 export default function VehicleForm() {
-    const navigate = useNavigate();
+    const router = useRouter();
     const [loading, setLoading] = useState(false);
     const [uploading, setUploading] = useState(false);
     const [formData, setFormData] = useState({
@@ -65,7 +65,7 @@ export default function VehicleForm() {
             });
             if (res.ok) {
                 toast.success("Vehicle added!");
-                navigate("/admin/vehicles");
+                router.push("/admin/vehicles");
             }
         } catch (error) {
             toast.error("Failed to add vehicle");

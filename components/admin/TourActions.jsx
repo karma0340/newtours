@@ -1,9 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Pencil, Trash } from "lucide-react";
 import toast from "react-hot-toast";
 
 export default function TourActions({ tourId }) {
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const handleDelete = async () => {
         if (!confirm("Are you sure you want to delete this tour?")) return;

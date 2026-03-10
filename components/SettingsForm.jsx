@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { Loader2, Save, User, Lock, Bell } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 // Mock useSession
 const useSession = () => ({ 
@@ -13,7 +13,7 @@ const useSession = () => ({
 
 export default function SettingsForm() {
     const { data: session, update } = useSession();
-    const navigate = useNavigate();
+    const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
 
     const [formData, setFormData] = useState({
