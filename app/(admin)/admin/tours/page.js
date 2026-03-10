@@ -1,6 +1,5 @@
-
 import Link from "next/link";
-import { Plus } from "lucide-react";
+import { Plus, MapPin, Tag } from "lucide-react";
 import dbConnect from "@/lib/db";
 import Tour from "@/models/Tour";
 import Image from "next/image";
@@ -17,7 +16,7 @@ export default async function AdminToursPage() {
     const tours = await getTours();
 
     return (
-        <div>
+        <div className="pb-10">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
                 <div>
                     <h1 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">
@@ -33,45 +32,80 @@ export default async function AdminToursPage() {
                 </div>
             </div>
 
-            {/* Table UI */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                <div className="overflow-x-auto">
-                    <table className="w-full text-left border-collapse min-w-[800px]">
+            {/* Responsive List: Table on Desktop, Cards on Mobile */}
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                
+                {/* Mobile Card View (Hidden on Tablet/Desktop) */}
+                <div className="md:hidden divide-y divide-gray-100">
+                    {tours.map((tour) => (
+                        <div key={tour._id} className="p-4 flex gap-4 hover:bg-gray-50 transition-colors">
+                            <div className="w-20 h-20 relative rounded-xl overflow-hidden bg-gray-100 shrink-0 shadow-sm">
+                                <Image src={tour.images[0] || '/images/hero/vehicle-default.jpg'} alt={tour.title} fill className="object-cover" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                                <h3 className="font-bold text-gray-900 truncate mb-1">{tour.title}</h3>
+                                <div className="flex flex-col gap-1">
+                                    <div className="flex items-center gap-1.5 text-xs text-gray-500 font-medium">
+                                        <Tag size={12} className="text-blue-500" />
+                                        ₹{tour.price.toLocaleString()}
+                                    </div>
+                                    <div className="flex items-center gap-1.5 text-xs text-gray-500 font-medium">
+                                        <MapPin size={12} className="text-rose-500" />
+                                        {tour.destination}
+                                    </div>
+                                </div>
+                                <div className="mt-2 pt-2 border-t border-gray-50 flex justify-end">
+                                    <TourActions tourId={tour._id.toString()} />
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Desktop Table View (Hidden on Mobile) */}
+                <div className="hidden md:block overflow-x-auto">
+                    <table className="w-full text-left border-collapse">
                         <thead>
-                            <tr className="bg-gray-50 border-b border-gray-100 text-xs uppercase text-gray-500 font-semibold">
-                                <th className="p-4">Image</th>
-                                <th className="p-4">Title</th>
+                            <tr className="bg-gray-50 border-b border-gray-100 text-[10px] uppercase tracking-widest text-gray-400 font-black">
+                                <th className="p-4 pl-8">Image</th>
+                                <th className="p-4">Tour Details</th>
                                 <th className="p-4">Price</th>
                                 <th className="p-4">Location</th>
-                                <th className="p-4 text-right">Actions</th>
+                                <th className="p-4 pr-8 text-right">Actions</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-100">
+                        <tbody className="divide-y divide-gray-100 font-medium">
                             {tours.map((tour) => (
-                                <tr key={tour._id} className="hover:bg-gray-50/50">
-                                    <td className="p-4">
-                                        <div className="w-12 h-12 relative rounded-lg overflow-hidden bg-gray-100">
+                                <tr key={tour._id} className="hover:bg-gray-50/50 group">
+                                    <td className="p-4 pl-8">
+                                        <div className="w-14 h-14 relative rounded-xl overflow-hidden bg-gray-100 shadow-sm border-2 border-white group-hover:scale-110 transition-transform">
                                             <Image src={tour.images[0] || '/images/hero/vehicle-default.jpg'} alt={tour.title} fill className="object-cover" />
                                         </div>
                                     </td>
-                                    <td className="p-4 font-medium text-gray-900">{tour.title}</td>
-                                    <td className="p-4 text-gray-600">₹{tour.price}</td>
-                                    <td className="p-4 text-gray-600">{tour.destination}</td>
-                                    <td className="p-4 text-right">
+                                    <td className="p-4 font-bold text-gray-900">{tour.title}</td>
+                                    <td className="p-4 text-gray-600 font-black">₹{tour.price.toLocaleString()}</td>
+                                    <td className="p-4 text-gray-500 flex items-center gap-1.5 mt-4">
+                                        <MapPin size={14} className="text-rose-500" />
+                                        {tour.destination}
+                                    </td>
+                                    <td className="p-4 pr-8 text-right">
                                         <TourActions tourId={tour._id.toString()} />
                                     </td>
                                 </tr>
                             ))}
-                            {tours.length === 0 && (
-                                <tr>
-                                    <td colSpan={5} className="p-8 text-center text-gray-500">
-                                        No tours found. Create one to get started.
-                                    </td>
-                                </tr>
-                            )}
                         </tbody>
                     </table>
                 </div>
+
+                {tours.length === 0 && (
+                    <div className="p-20 text-center">
+                        <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <Plus size={32} className="text-gray-300" />
+                        </div>
+                        <p className="text-gray-500 font-bold uppercase tracking-widest text-xs">No tours found.</p>
+                        <Link href="/admin/tours/new" className="text-blue-600 text-sm font-bold mt-2 inline-block hover:underline">Create your first tour package</Link>
+                    </div>
+                )}
             </div>
         </div>
     );
