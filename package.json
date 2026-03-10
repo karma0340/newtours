@@ -37,5 +37,9 @@
     "eslint": "^9",
     "eslint-config-next": "^16.1.6",
     "tailwindcss": "^4"
+  },
+  "optionalDependencies": {
+    "@next/swc-linux-x64-gnu": "^16.1.6",
+    "@next/swc-linux-x64-musl": "^16.1.6"
   }
 }
