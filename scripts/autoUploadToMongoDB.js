@@ -38,7 +38,12 @@ async function uploadImages() {
     await mongoose.connect(MONGODB_URI);
 
     const uploadsDir = path.join(process.cwd(), "public", "uploads");
+    const toursUploadDir = path.join(uploadsDir, "tours");
+    const vehiclesUploadDir = path.join(uploadsDir, "vehicles");
+    
     if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
+    if (!fs.existsSync(toursUploadDir)) fs.mkdirSync(toursUploadDir, { recursive: true });
+    if (!fs.existsSync(vehiclesUploadDir)) fs.mkdirSync(vehiclesUploadDir, { recursive: true });
 
     let updatedTours = 0;
     const toursDir = path.join(process.cwd(), "ai_tour_images");
@@ -51,23 +56,23 @@ async function uploadImages() {
 
         const tour = await Tour.findOne({ title });
         if (tour) {
-            const safeSlug = tour.slug || title.replace(/\s+/g, "_").toLowerCase();
-            const newFilename = `${Date.now()}_${safeSlug}.webp`;
-            const destPath = path.join(uploadsDir, newFilename);
-            const publicUrl = `/uploads/${newFilename}`;
+            const newFilename = filename; // Use the exact filename from toursMap (e.g. bir_billing.jpg)
+            const destPath = path.join(toursUploadDir, newFilename);
+            const publicUrl = `/uploads/tours/${newFilename}`;
 
             const buffer = fs.readFileSync(sourcePath);
             await sharp(buffer)
-                .resize({ width: 1200, withoutEnlargement: true }) // Emulate Admin Optimization!
-                .webp({ quality: 80 }) // 80% optimal WebP
+                .resize({ width: 1200, withoutEnlargement: true })
+                .jpeg({ quality: 90 }) 
                 .toFile(destPath);
 
             tour.image = publicUrl;
-            tour.images = [publicUrl];
+            if (!tour.images) tour.images = [];
+            tour.images = [publicUrl, ...tour.images.filter(img => img !== publicUrl)];
             
             await tour.save();
             updatedTours++;
-            console.log(`✅ Uploaded and compressed tour imagery for: ${title}`);
+            console.log(`✅ Uploaded tour image: ${title} -> ${publicUrl}`);
         }
     }
 
@@ -86,23 +91,23 @@ async function uploadImages() {
         }
 
         for (const vehicle of vehiclesList) {
-            const safeSlug = vehicle.slug || name.replace(/\s+/g, "_").toLowerCase();
-            const newFilename = `${Date.now()}_${safeSlug}.webp`;
-            const destPath = path.join(uploadsDir, newFilename);
-            const publicUrl = `/uploads/${newFilename}`;
+            const newFilename = filename; // Use the exact filename from vehiclesMap (e.g. toyota_innova_crysta.jpg)
+            const destPath = path.join(vehiclesUploadDir, newFilename);
+            const publicUrl = `/uploads/vehicles/${newFilename}`;
 
             const buffer = fs.readFileSync(sourcePath);
             await sharp(buffer)
-                .resize({ width: 1200, withoutEnlargement: true }) // Emulate Admin Optimization
-                .webp({ quality: 80 })
+                .resize({ width: 1200, withoutEnlargement: true })
+                .jpeg({ quality: 90 })
                 .toFile(destPath);
 
             vehicle.image = publicUrl;
-            vehicle.images = [publicUrl];
+            if (!vehicle.images) vehicle.images = [];
+            vehicle.images = [publicUrl, ...vehicle.images.filter(img => img !== publicUrl)];
 
             await vehicle.save();
             updatedVehicles++;
-            console.log(`✅ Uploaded and compressed vehicle imagery for: ${name}`);
+            console.log(`✅ Uploaded vehicle image: ${name} -> ${publicUrl}`);
         }
     }
 

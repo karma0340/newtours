@@ -56,7 +56,7 @@ export default async function TourDetailsPage({ params }) {
 
             {/* Hero Gallery Section */}
             <div className="relative h-[60vh] md:h-[75vh] w-full overflow-hidden bg-gray-900">
-                <HeroSlider images={tour.images} opacity="opacity-80" overlayColor="from-gray-950 via-gray-950/20 to-transparent" />
+                <HeroSlider opacity="opacity-80" overlayColor="from-gray-950 via-gray-950/20 to-transparent" />
 
                 <div className="absolute bottom-12 left-0 w-full">
                     <div className="container mx-auto px-4">

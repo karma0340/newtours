@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-const DEFAULT_HERO_IMAGES = [
+const HERO_IMAGES = [
     "/images/hero/home_adventure_wide.png",
     "/images/hero/about_new_wide.png",
     "/images/hero/vehicles_fleet_wide.png",
@@ -12,17 +12,12 @@ const DEFAULT_HERO_IMAGES = [
     "/images/hero/about_team_wide.png",
 ];
 
-export default function HeroSlider({ 
-    images = [], 
-    opacity = "opacity-60", 
-    overlayColor = "from-black/70 via-black/40 to-white" 
-}) {
-    const sliderImages = images.length > 0 ? images : DEFAULT_HERO_IMAGES;
+export default function HeroSlider({ opacity = "opacity-60", overlayColor = "from-black/70 via-black/40 to-white" }) {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % sliderImages.length);
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % HERO_IMAGES.length);
         }, 3000);
 
         return () => clearInterval(timer);
@@ -43,7 +38,7 @@ export default function HeroSlider({
                     className="absolute inset-0 w-full h-full"
                 >
                     <Image
-                        src={sliderImages[currentIndex]}
+                        src={HERO_IMAGES[currentIndex]}
                         alt="Himalayan Background"
                         fill
                         className={`object-cover ${opacity}`}

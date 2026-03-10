@@ -8,22 +8,17 @@ dotenv.config({ path: path.resolve(path.dirname(fileURLToPath(import.meta.url)),
 
 async function check() {
     await mongoose.connect(process.env.MONGODB_URI);
-    const Tour = mongoose.model("Tour", new mongoose.Schema({ title: String, image: String, images: [String] }, { strict: false }));
-    const Vehicle = mongoose.model("Vehicle", new mongoose.Schema({ name: String, image: String, images: [String] }, { strict: false }));
-    const Category = mongoose.model("Category", new mongoose.Schema({ title: String, image: String }, { strict: false }));
-
+    const Tour = mongoose.model("Tour", new mongoose.Schema({}, { strict: false }));
+    const Vehicle = mongoose.model("Vehicle", new mongoose.Schema({}, { strict: false }));
+    
+    const tours = await Tour.find({});
     console.log("--- TOURS ---");
-    const tours = await Tour.find();
-    tours.forEach(t => console.log(`${t.title}: ${t.image}`));
-
-    console.log("\n--- VEHICLES ---");
-    const vehicles = await Vehicle.find();
-    vehicles.forEach(v => console.log(`${v.name}: ${v.image}`));
-
-    console.log("\n--- CATEGORIES ---");
-    const cats = await Category.find();
-    cats.forEach(c => console.log(`${c.title}: ${c.image}`));
-
+    tours.forEach(t => console.log(`${t.title}: ${JSON.stringify(t.images)}`));
+    
+    const vehicles = await Vehicle.find({});
+    console.log("--- VEHICLES ---");
+    vehicles.forEach(v => console.log(`${v.name}: ${JSON.stringify(v.images)}`));
+    
     await mongoose.disconnect();
 }
 
