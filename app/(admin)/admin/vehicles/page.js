@@ -4,6 +4,7 @@ import dbConnect from "@/lib/db";
 import Vehicle from "@/models/Vehicle";
 import Image from "next/image";
 import RefreshButton from "@/components/admin/RefreshButton";
+import VehicleActions from "@/components/admin/VehicleActions";
 
 async function getVehicles() {
     await dbConnect();
@@ -58,6 +59,10 @@ export default async function AdminVehiclesPage() {
                                         {v.capacity}
                                     </div>
                                 </div>
+                                <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Actions</span>
+                                    <VehicleActions vehicleId={v._id.toString()} />
+                                </div>
                             </div>
                         </div>
                     ))}
@@ -72,7 +77,8 @@ export default async function AdminVehiclesPage() {
                                 <th className="p-4 font-black">Vehicle Name</th>
                                 <th className="p-4 font-black">Type</th>
                                 <th className="p-4 font-black">Capacity</th>
-                                <th className="p-4 pr-8 text-right font-black">Status</th>
+                                <th className="p-4 font-black">Status</th>
+                                <th className="p-4 pr-8 text-right font-black">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
@@ -95,10 +101,13 @@ export default async function AdminVehiclesPage() {
                                             {v.capacity}
                                         </div>
                                     </td>
-                                    <td className="p-4 pr-8 text-right">
+                                    <td className="p-4">
                                         <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm border ${v.available ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-rose-50 text-rose-600 border-rose-100'}`}>
                                             {v.available ? 'Available' : 'Unavailable'}
                                         </span>
+                                    </td>
+                                    <td className="p-4 pr-8 text-right">
+                                        <VehicleActions vehicleId={v._id.toString()} />
                                     </td>
                                 </tr>
                             ))}

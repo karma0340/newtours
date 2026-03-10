@@ -54,7 +54,8 @@ export default async function AdminToursPage() {
                                         {tour.destination}
                                     </div>
                                 </div>
-                                <div className="mt-2 pt-2 border-t border-gray-50 flex justify-end">
+                                <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Actions</span>
                                     <TourActions tourId={tour._id.toString()} />
                                 </div>
                             </div>

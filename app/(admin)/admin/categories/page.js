@@ -154,28 +154,30 @@ export default function AdminCategories() {
                                         <ImageIcon size={36} className="text-gray-300" />
                                     </div>
                                 )}
-                                {/* Action Buttons */}
-                                <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                {/* Action Buttons - Fixed for Mobile, Hover for Desktop */}
+                                <div className="absolute top-3 right-3 flex gap-2 md:opacity-0 md:group-hover:opacity-100 transition-all">
                                     <button
                                         onClick={() => openEdit(cat)}
-                                        className="w-8 h-8 bg-white rounded-lg shadow flex items-center justify-center text-gray-600 hover:text-blue-600 transition-colors"
+                                        className="w-9 h-9 bg-white/90 backdrop-blur rounded-xl shadow-lg flex items-center justify-center text-gray-700 hover:text-blue-600 transition-all active:scale-95"
+                                        title="Edit"
                                     >
-                                        <Pencil size={14} />
+                                        <Pencil size={15} />
                                     </button>
                                     <button
                                         onClick={() => setDeleteId(cat._id)}
-                                        className="w-8 h-8 bg-white rounded-lg shadow flex items-center justify-center text-gray-600 hover:text-red-600 transition-colors"
+                                        className="w-9 h-9 bg-white/90 backdrop-blur rounded-xl shadow-lg flex items-center justify-center text-gray-700 hover:text-red-600 transition-all active:scale-95"
+                                        title="Delete"
                                     >
-                                        <Trash2 size={14} />
+                                        <Trash2 size={15} />
                                     </button>
                                 </div>
                             </div>
-                            <div className="p-4">
-                                <div className="flex items-center justify-between mb-1">
-                                    <h3 className="font-bold text-gray-900">{cat.title}</h3>
-                                    <span className="text-[10px] font-mono text-gray-400 bg-gray-50 px-2 py-0.5 rounded">/{cat.slug}</span>
+                            <div className="p-5">
+                                <div className="flex items-center justify-between mb-2">
+                                    <h3 className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors uppercase tracking-tight">{cat.title}</h3>
+                                    <span className="text-[9px] font-black tracking-widest text-gray-400 bg-gray-50 px-2 py-0.5 rounded border border-gray-100 italic">/{cat.slug}</span>
                                 </div>
-                                <p className="text-sm text-gray-500 line-clamp-2">{cat.description}</p>
+                                <p className="text-sm text-gray-500 line-clamp-2 font-medium leading-relaxed">{cat.description}</p>
                             </div>
                         </div>
                     ))}

@@ -3,13 +3,13 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { Loader2, Plus, Minus, Image as ImageIcon } from "lucide-react";
+import { Loader2, Plus, Minus, Image as ImageIcon, Save, Check } from "lucide-react";
 
-export default function VehicleForm() {
+export default function VehicleForm({ initialData, isEdit }) {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
     const [uploading, setUploading] = useState(false);
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState(initialData || {
         name: "",
         type: "SUV",
         capacity: "4+1 Seats",
@@ -58,85 +58,178 @@ export default function VehicleForm() {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await fetch("/api/admin/vehicles", {
-                method: "POST",
+            const url = isEdit ? `/api/admin/vehicles/${formData._id}` : "/api/admin/vehicles";
+            const method = isEdit ? "PATCH" : "POST";
+
+            const res = await fetch(url, {
+                method,
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
             });
             if (res.ok) {
-                toast.success("Vehicle added!");
+                toast.success(isEdit ? "Vehicle updated!" : "Vehicle added!");
                 router.push("/admin/vehicles");
+                router.refresh();
+            } else {
+                const data = await res.json();
+                toast.error(data.message || "Operation failed");
             }
         } catch (error) {
-            toast.error("Failed to add vehicle");
+            toast.error("An error occurred");
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-8 bg-white p-8 rounded-xl border border-gray-100 shadow-sm max-w-4xl">
+        <form onSubmit={handleSubmit} className="space-y-8 bg-white p-6 md:p-8 rounded-2xl border border-gray-100 shadow-xl max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Vehicle Name</label>
-                    <input type="text" name="name" required className="w-full px-4 py-2 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500" value={formData.name} onChange={handleChange} />
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Vehicle Name</label>
+                    <input 
+                        type="text" 
+                        name="name" 
+                        required 
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all font-bold" 
+                        value={formData.name} 
+                        onChange={handleChange} 
+                        placeholder="e.g. Toyota Innova Crysta"
+                    />
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
-                    <select name="type" className="w-full px-4 py-2 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500" value={formData.type} onChange={handleChange}>
-                        <option value="SUV">SUV</option>
-                        <option value="SADAN">SADAN</option>
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Vehicle Category</label>
+                    <select 
+                        name="type" 
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all font-bold" 
+                        value={formData.type} 
+                        onChange={handleChange}
+                    >
+                        <option value="SUV">SUV (Premium)</option>
+                        <option value="SADAN">SEDAN</option>
                         <option value="HATCHBACK">HATCHBACK</option>
-                        <option value="BUS">BUS</option>
-                        <option value="TEMPO TRAVELER">TEMPO TRAVELER</option>
+                        <option value="BUS">TOURIST BUS</option>
+                        <option value="TEMPO TRAVELER">TEMPO TRAVELLER</option>
                     </select>
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Capacity</label>
-                    <input type="text" name="capacity" className="w-full px-4 py-2 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500" value={formData.capacity} onChange={handleChange} />
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Seating Capacity</label>
+                    <input 
+                        type="text" 
+                        name="capacity" 
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all font-bold" 
+                        value={formData.capacity} 
+                        onChange={handleChange} 
+                        placeholder="e.g. 6+1 Seats"
+                    />
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Price Per Day</label>
-                    <input type="number" name="pricePerDay" className="w-full px-4 py-2 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500" value={formData.pricePerDay} onChange={handleChange} />
-                </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Price Per KM</label>
-                    <input type="number" name="pricePerKm" className="w-full px-4 py-2 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500" value={formData.pricePerKm} onChange={handleChange} />
-                </div>
-                <div className="flex items-center pt-6">
-                    <label className="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" name="available" checked={formData.available} onChange={handleChange} className="w-5 h-5" />
-                        <span className="text-sm font-medium">Available for booking</span>
-                    </label>
-                </div>
-            </div>
-
-            <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                <textarea name="description" rows="3" className="w-full px-4 py-2 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500" value={formData.description} onChange={handleChange} />
-            </div>
-
-            <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Images</label>
-                {formData.images.map((url, index) => (
-                    <div key={index} className="flex items-center gap-4 mb-4">
-                        <label className="flex-1 cursor-pointer">
-                            <div className="border-2 border-dashed border-gray-200 rounded-xl p-4 text-center hover:border-blue-500">
-                                <input type="file" className="hidden" onChange={(e) => handleFileUpload(index, e.target.files[0])} />
-                                <ImageIcon size={20} className="mx-auto mb-1 text-gray-400" />
-                                <span className="text-xs text-gray-500">{uploading ? "Uploading..." : "Click to upload image"}</span>
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Status</label>
+                    <div className="flex items-center h-[52px]">
+                        <label className="flex items-center gap-3 cursor-pointer group">
+                            <div className={`w-12 h-6 rounded-full p-1 transition-colors ${formData.available ? 'bg-emerald-500' : 'bg-gray-300'}`}>
+                                <div className={`bg-white w-4 h-4 rounded-full transition-transform ${formData.available ? 'translate-x-6' : 'translate-x-0'}`} />
                             </div>
+                            <input type="checkbox" name="available" checked={formData.available} onChange={handleChange} className="hidden" />
+                            <span className="text-sm font-black uppercase tracking-widest text-gray-600">{formData.available ? 'Available (Live)' : 'Unavailable (Hidden)'}</span>
                         </label>
-                        {url && <div className="w-16 h-16 rounded-lg overflow-hidden border"><img src={url} className="w-full h-full object-cover" /></div>}
                     </div>
-                ))}
+                </div>
+                <div>
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Price Per Day (₹)</label>
+                    <input 
+                        type="number" 
+                        name="pricePerDay" 
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all font-bold" 
+                        value={formData.pricePerDay} 
+                        onChange={handleChange} 
+                        placeholder="0"
+                    />
+                </div>
+                <div>
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Price Per KM (₹)</label>
+                    <input 
+                        type="number" 
+                        name="pricePerKm" 
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all font-bold" 
+                        value={formData.pricePerKm} 
+                        onChange={handleChange} 
+                        placeholder="0"
+                    />
+                </div>
             </div>
 
-            <button type="submit" disabled={loading} className="w-full bg-blue-600 text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2">
-                {loading && <Loader2 className="animate-spin" size={20} />}
-                Save Vehicle
+            <div>
+                <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Description</label>
+                <textarea 
+                    name="description" 
+                    rows="4" 
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all font-medium leading-relaxed" 
+                    value={formData.description} 
+                    onChange={handleChange} 
+                    placeholder="Describe the vehicle's condition, features, and amenities..."
+                />
+            </div>
+
+            <div>
+                <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-4">Vehicle Images</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {formData.images.map((url, index) => (
+                        <div key={index} className="space-y-2">
+                            <div className="relative group">
+                                <div className={`aspect-video rounded-2xl border-2 border-dashed transition-all flex flex-col items-center justify-center p-4 overflow-hidden
+                                    ${url ? 'border-emerald-200 bg-emerald-50' : 'border-gray-200 bg-gray-50 hover:border-blue-400'}`}>
+                                    
+                                    {url ? (
+                                        <>
+                                            <img src={url} className="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-110" />
+                                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+                                                <button 
+                                                    type="button"
+                                                    onClick={() => {
+                                                        const newImages = [...formData.images];
+                                                        newImages[index] = "";
+                                                        setFormData(prev => ({ ...prev, images: newImages }));
+                                                    }}
+                                                    className="bg-white text-red-600 p-2 rounded-lg font-bold text-xs uppercase tracking-widest shadow-xl active:scale-95"
+                                                >
+                                                    Remove
+                                                </button>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <input type="file" className="absolute inset-0 opacity-0 cursor-pointer" onChange={(e) => handleFileUpload(index, e.target.files[0])} />
+                                            <ImageIcon size={24} className="text-gray-300 mb-2" />
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">{uploading ? "Uploading..." : "Click to Upload"}</span>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
+                            <input 
+                                type="text" 
+                                value={url} 
+                                onChange={(e) => {
+                                    const newImages = [...formData.images];
+                                    newImages[index] = e.target.value;
+                                    setFormData(prev => ({ ...prev, images: newImages }));
+                                }}
+                                placeholder="...or enter image URL" 
+                                className="w-full px-3 py-2 bg-gray-50 border border-gray-100 rounded-lg text-xs outline-none focus:bg-white"
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <button 
+                type="submit" 
+                disabled={loading || uploading} 
+                className={`w-full py-4 rounded-2xl font-black uppercase tracking-[0.2em] shadow-xl transition-all flex items-center justify-center gap-3 active:scale-[0.98]
+                    ${isEdit ? 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-200' : 'bg-blue-600 hover:bg-blue-700 shadow-blue-200'} text-white`}
+            >
+                {loading ? <Loader2 className="animate-spin" size={20} /> : (isEdit ? <Check size={20} /> : <Save size={20} />)}
+                {isEdit ? "Update Vehicle Details" : "Save New Vehicle"}
             </button>
         </form>
     );
 }
-
