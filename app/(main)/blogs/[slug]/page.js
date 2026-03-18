@@ -22,7 +22,10 @@ export async function generateMetadata({ params }) {
             title: blog.seoTitle || blog.title,
             description: blog.seoDescription || blog.excerpt,
             images: [{ url: blog.image }],
-        }
+        },
+        alternates: {
+            canonical: `https://hikethehimalaya.in/blogs/${blog.slug}`,
+        },
     };
 }
 
@@ -45,8 +48,34 @@ export default async function BlogPostPage({ params }) {
         notFound();
     }
 
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: blog.title,
+        description: blog.seoDescription || blog.excerpt,
+        image: blog.image || "https://hikethehimalaya.in/icon.png",
+        author: {
+            '@type': 'Person',
+            name: blog.author || "Hike The Himalaya Team"
+        },
+        publisher: {
+            '@type': 'Organization',
+            name: "Hike The Himalaya",
+            logo: {
+                '@type': 'ImageObject',
+                url: "https://hikethehimalaya.in/icon.png"
+            }
+        },
+        datePublished: blog.createdAt,
+        dateModified: blog.updatedAt || blog.createdAt,
+    };
+
     return (
         <article className="min-h-screen bg-gray-50 pb-20">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             {/* Header / Hero */}
             <div className="relative h-[60vh] min-h-[400px] w-full flex items-end justify-center pt-32 pb-16 px-4">
                 <Image 

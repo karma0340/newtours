@@ -63,6 +63,9 @@ export async function generateMetadata({ params }) {
             description: tour.description.slice(0, 160),
             images: [tour.image || "/icon.png"],
         },
+        alternates: {
+            canonical: `https://hikethehimalaya.in/tours/${tour.slug}`,
+        },
     };
 }
 
@@ -74,8 +77,25 @@ export default async function TourDetailsPage({ params }) {
         notFound();
     }
 
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'TouristTrip',
+        name: tour.title,
+        description: tour.description,
+        image: tour.image || "https://hikethehimalaya.in/icon.png",
+        touristType: ["Adventure Seekers", "Nature Lovers"],
+        subjectOf: {
+            '@type': 'CreativeWork',
+            name: "Hike The Himalaya Packages"
+        }
+    };
+
     return (
         <div className="bg-white min-h-screen">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             {/* Top Navigation / Breadcrumbs Bar */}
             <div className="bg-gray-900 py-4 border-b border-white/5 sticky top-0 z-[60] backdrop-blur-md bg-gray-900/90">
                 <div className="container mx-auto px-4 flex items-center justify-between">

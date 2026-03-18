@@ -75,6 +75,9 @@ export async function generateMetadata({ params }) {
             "Chandigarh to Manali tour package",
             "Hike The Himalaya"
         ],
+        alternates: {
+            canonical: `https://hikethehimalaya.in/categories/${slug}`,
+        },
     };
 }
 
