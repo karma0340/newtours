@@ -3,7 +3,7 @@
 import Script from 'next/script';
 
 const GoogleAnalytics = ({ ga_id }) => {
-  const measurementId = ga_id || "G-LX2JR2W3K9";
+  const measurementId = ga_id || "G-V940YBT8RK";
   if (!measurementId) return null;
 
   return (
