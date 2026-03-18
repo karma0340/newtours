@@ -3,13 +3,14 @@
 import Script from 'next/script';
 
 const GoogleAnalytics = ({ ga_id }) => {
-  if (!ga_id) return null;
+  const measurementId = ga_id || "G-LX2JR2W3K9";
+  if (!measurementId) return null;
 
   return (
     <>
       <Script
         strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${ga_id}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
       />
       <Script
         id="google-analytics"
@@ -19,7 +20,7 @@ const GoogleAnalytics = ({ ga_id }) => {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${ga_id}', {
+            gtag('config', '${measurementId}', {
               page_path: window.location.pathname,
             });
           `,
