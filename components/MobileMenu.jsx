@@ -12,6 +12,7 @@ const navLinks = [
     { name: 'Tours', href: '/tours', icon: <MapPin size={18} /> },
     { name: 'About Us', href: '/about', icon: <MapPin size={18} /> },
     { name: 'Vehicles', href: '/vehicles', icon: <MapPin size={18} /> },
+    { name: 'Blog', href: '/blogs', icon: <MapPin size={18} /> },
     { name: 'Contact', href: '/contact', icon: <MapPin size={18} /> },
 ];
 

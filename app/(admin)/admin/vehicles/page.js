@@ -59,8 +59,11 @@ export default async function AdminVehiclesPage() {
                                         {v.capacity}
                                     </div>
                                 </div>
-                                <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Actions</span>
+                                <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between gap-4">
+                                    <div className="flex flex-col">
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Settings</span>
+                                        <span className="text-[9px] font-bold text-gray-500 mt-1">Status: {v.available ? 'Active' : 'Hidden'}</span>
+                                    </div>
                                     <VehicleActions vehicleId={v._id.toString()} />
                                 </div>
                             </div>

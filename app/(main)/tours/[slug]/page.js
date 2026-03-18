@@ -18,6 +18,54 @@ async function getTour(slug) {
 // NextJS native caching instruction to cache this page logic instead of repeatedly calling db
 export const revalidate = 3600; // Cache this dynamic route for an hour
 
+export async function generateMetadata({ params }) {
+    const { slug } = await params;
+    const tour = await getTour(slug);
+
+    if (!tour) {
+        return {
+            title: "Tour Not Found",
+        };
+    }
+
+    return {
+        title: tour.title,
+        description: `${tour.title} in ${tour.destination}. Duration: ${tour.duration}. ${tour.description.slice(0, 150)}...`,
+        keywords: [
+            tour.title,
+            tour.destination,
+            "top 10 treks in Himachal",
+            "top 10 tour and travels",
+            "taxi service",
+            "top taxi service",
+            "chandigarh to manali tour package",
+            "Hike The Himalaya",
+            "hike the himalaya treks",
+            "Himalaya Trekking",
+            "Himachal Tour Packages"
+        ],
+        openGraph: {
+            title: tour.title,
+            description: tour.description.slice(0, 160),
+            images: [
+                {
+                    url: tour.image || "/icon.png",
+                    width: 1200,
+                    height: 630,
+                    alt: tour.title,
+                },
+            ],
+            type: "website",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: tour.title,
+            description: tour.description.slice(0, 160),
+            images: [tour.image || "/icon.png"],
+        },
+    };
+}
+
 export default async function TourDetailsPage({ params }) {
     const { slug } = await params;
     const tour = await getTour(slug);

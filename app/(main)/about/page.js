@@ -3,6 +3,18 @@ import Image from "next/image";
 import { Award, Users, Mountain, Heart, ShieldCheck, Bus, Truck, Compass, Car } from "lucide-react";
 import HeroSlider from "@/components/HeroSlider";
 
+export const metadata = {
+    title: "About Us - Hike The Himalaya | Top Taxi Service & Tour Experts",
+    description: "Learn about Hike The Himalaya, a leading tour and travels agency in Himachal. We own our fleet of luxury buses and taxis for the best mountain journeys.",
+    keywords: [
+        "top taxi service",
+        "tour and travels",
+        "Hike The Himalaya Story",
+        "Himachal fleet service",
+        "Volvo bus tours Himachal"
+    ],
+};
+
 export default function AboutPage() {
     return (
         <div className="bg-white">

@@ -110,42 +110,44 @@ export default function AdminUserClient({ initialUsers }) {
                             </span>
                         </div>
 
-                        <div className="flex items-center justify-between pt-3 border-t border-gray-50">
-                            <div className="flex items-center gap-1.5 text-[10px] text-gray-400 font-bold uppercase tracking-widest">
+                        <div className="flex items-center justify-between pt-4 border-t border-gray-100 gap-4">
+                            <div className="flex items-center gap-1.5 text-[10px] text-gray-400 font-black uppercase tracking-widest bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100">
                                 <Calendar size={12} /> Joined {new Date(user.createdAt).toLocaleDateString()}
                             </div>
                             
                             <div className="flex items-center gap-2">
                                 {editingId === user._id ? (
-                                    <div className="flex items-center gap-1">
+                                    <div className="flex items-center gap-2">
                                         <select
                                             value={currentRole}
                                             onChange={(e) => setCurrentRole(e.target.value)}
-                                            className="text-[10px] border border-gray-200 rounded-lg px-2 py-1 outline-none bg-white font-black uppercase tracking-widest"
+                                            className="text-xs border border-gray-200 rounded-xl px-3 py-2.5 outline-none bg-white font-black uppercase tracking-widest shadow-sm"
                                         >
                                             <option value="user">User</option>
                                             <option value="admin">Admin</option>
                                         </select>
-                                        <button onClick={() => handleSaveRole(user._id)} disabled={loading} className="p-1 text-emerald-600 hover:bg-emerald-50 rounded-lg">
-                                            <Check size={16} />
+                                        <button onClick={() => handleSaveRole(user._id)} disabled={loading} className="p-3 text-white bg-emerald-600 rounded-xl shadow-lg shadow-emerald-600/20 active:scale-95">
+                                            <Check size={18} />
                                         </button>
-                                        <button onClick={handleCancelEdit} className="p-1 text-gray-400 hover:bg-gray-50 rounded-lg">
-                                            <X size={16} />
+                                        <button onClick={handleCancelEdit} className="p-3 text-gray-600 bg-gray-100 rounded-xl active:scale-95">
+                                            <X size={18} />
                                         </button>
                                     </div>
                                 ) : (
-                                    <>
-                                        <button onClick={() => handleEditClick(user)} className="p-2 text-gray-400 hover:text-blue-600 transition-colors">
-                                            <Edit2 size={16} />
+                                    <div className="flex items-center gap-3">
+                                        <button onClick={() => handleEditClick(user)} className="px-5 py-3 text-[10px] font-black uppercase tracking-widest text-blue-600 bg-blue-50 rounded-xl border border-blue-100 active:scale-95">
+                                            Role
                                         </button>
                                         <button 
                                             onClick={() => handleDelete(user._id)}
                                             disabled={user._id === session?.user?.id}
-                                            className={`p-2 transition-colors ${user._id === session?.user?.id ? 'text-gray-100 opacity-50' : 'text-gray-400 hover:text-rose-600'}`}
+                                            className={`p-3 rounded-xl transition-all border ${user._id === session?.user?.id 
+                                                ? 'text-gray-200 bg-gray-50 border-gray-100' 
+                                                : 'text-rose-600 bg-rose-50 border-rose-100 active:scale-95'}`}
                                         >
-                                            <Trash2 size={16} />
+                                            <Trash2 size={18} />
                                         </button>
-                                    </>
+                                    </div>
                                 )}
                             </div>
                         </div>

@@ -53,6 +53,31 @@ const categoryData = {
     }
 };
 
+export async function generateMetadata({ params }) {
+    const { slug } = await params;
+    const category = categoryData[slug];
+
+    if (!category) {
+        return {
+            title: "Category Not Found",
+        };
+    }
+
+    return {
+        title: `${category.title} - Hike The Himalaya`,
+        description: `${category.description} Best tour packages and taxi services for ${category.title} in Himachal.`,
+        keywords: [
+            category.title,
+            "top 10 tour and travels",
+            "taxi service",
+            "near taxi",
+            "top taxi service",
+            "Chandigarh to Manali tour package",
+            "Hike The Himalaya"
+        ],
+    };
+}
+
 async function getToursByCategory(categorySlug) {
     await dbConnect();
 

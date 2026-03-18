@@ -155,20 +155,20 @@ export default function AdminCategories() {
                                     </div>
                                 )}
                                 {/* Action Buttons - Fixed for Mobile, Hover for Desktop */}
-                                <div className="absolute top-3 right-3 flex gap-2 md:opacity-0 md:group-hover:opacity-100 transition-all">
+                                <div className="absolute top-3 right-3 flex gap-2 md:opacity-0 md:group-hover:opacity-100 transition-all z-10">
                                     <button
                                         onClick={() => openEdit(cat)}
-                                        className="w-9 h-9 bg-white/90 backdrop-blur rounded-xl shadow-lg flex items-center justify-center text-gray-700 hover:text-blue-600 transition-all active:scale-95"
+                                        className="w-10 h-10 bg-white/95 backdrop-blur rounded-xl shadow-lg flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition-all active:scale-90"
                                         title="Edit"
                                     >
-                                        <Pencil size={15} />
+                                        <Pencil size={18} />
                                     </button>
                                     <button
                                         onClick={() => setDeleteId(cat._id)}
-                                        className="w-9 h-9 bg-white/90 backdrop-blur rounded-xl shadow-lg flex items-center justify-center text-gray-700 hover:text-red-600 transition-all active:scale-95"
+                                        className="w-10 h-10 bg-white/95 backdrop-blur rounded-xl shadow-lg flex items-center justify-center text-red-600 hover:bg-red-600 hover:text-white transition-all active:scale-90"
                                         title="Delete"
                                     >
-                                        <Trash2 size={15} />
+                                        <Trash2 size={18} />
                                     </button>
                                 </div>
                             </div>

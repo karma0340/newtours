@@ -16,6 +16,7 @@ import {
     Grid2x2,
     Menu,
     X,
+    Newspaper
 } from "lucide-react";
 import Logo from "../Logo";
 
@@ -30,6 +31,7 @@ const AdminSidebar = () => {
         { name: "Categories", href: "/admin/categories", icon: Grid2x2 },
         { name: "Bookings", href: "/admin/bookings", icon: CalendarDays },
         { name: "Users", href: "/admin/users", icon: Users },
+        { name: "Blog", href: "/admin/blogs", icon: Newspaper },
         { name: "Settings", href: "/admin/settings", icon: Settings },
     ];
 

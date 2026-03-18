@@ -122,30 +122,30 @@ export default function AdminBookingClient({ initialBookings }) {
                             </div>
                         </div>
 
-                        <div className="flex justify-between items-center pt-3 border-t border-gray-50">
+                        <div className="flex justify-between items-center pt-4 border-t border-gray-100 gap-4">
                             {editingId === booking._id ? (
-                                <div className="flex flex-1 items-center gap-2">
+                                <div className="flex flex-1 items-center gap-3">
                                     <select
                                         value={currentStatus}
                                         onChange={(e) => setCurrentStatus(e.target.value)}
-                                        className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 focus:ring-2 focus:ring-blue-500 bg-white outline-none flex-1"
+                                        className="text-sm border border-gray-200 rounded-xl px-3 py-2.5 focus:ring-2 focus:ring-blue-500 bg-white outline-none flex-1 font-bold shadow-sm"
                                     >
                                         {statuses.map(s => <option key={s} value={s}>{s}</option>)}
                                     </select>
-                                    <button onClick={() => handleSave(booking._id)} disabled={loading} className="p-1.5 text-emerald-600 hover:bg-emerald-50 rounded-lg">
-                                        <Check size={18} />
+                                    <button onClick={() => handleSave(booking._id)} disabled={loading} className="p-3 text-white bg-emerald-600 rounded-xl shadow-lg shadow-emerald-600/20 active:scale-95">
+                                        <Check size={20} />
                                     </button>
-                                    <button onClick={handleCancelEdit} className="p-1.5 text-gray-400 hover:bg-gray-50 rounded-lg">
-                                        <X size={18} />
+                                    <button onClick={handleCancelEdit} className="p-3 text-gray-600 bg-gray-100 rounded-xl active:scale-95">
+                                        <X size={20} />
                                     </button>
                                 </div>
                             ) : (
                                 <>
-                                    <button onClick={() => handleEditClick(booking)} className="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-lg hover:bg-blue-100 transition-colors">
-                                        Change Status
+                                    <button onClick={() => handleEditClick(booking)} className="flex-1 text-xs font-black uppercase tracking-widest text-blue-600 bg-blue-50 py-3.5 rounded-xl hover:bg-blue-100 transition-colors active:scale-95 border border-blue-100">
+                                        Update Status
                                     </button>
-                                    <button onClick={() => handleDelete(booking._id)} className="p-2 text-gray-400 hover:text-rose-600 transition-colors">
-                                        <Trash2 size={18} />
+                                    <button onClick={() => handleDelete(booking._id)} className="p-3.5 text-rose-600 bg-rose-50 rounded-xl hover:bg-rose-100 active:scale-95 border border-rose-100">
+                                        <Trash2 size={20} />
                                     </button>
                                 </>
                             )}

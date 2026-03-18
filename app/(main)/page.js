@@ -11,6 +11,29 @@ import HeroSearch from "@/components/HeroSearch";
 import redis from "@/lib/redis";
 import HeroSlider from "@/components/HeroSlider";
 
+export const metadata = {
+    title: "Himachal Tour Packages | Trekking & Adventure Tours | Hike The Himalaya",
+    description: "Explore the best Himachal tour packages, trekking adventures, Spiti Valley trips & Manali holidays. Book affordable travel packages with Hike The Himalaya.",
+    keywords: [
+        "Himachal tour packages",
+        "trekking in Himalayas",
+        "adventure tours India",
+        "travel packages India",
+        "top 10 taxi service in Chandigarh",
+        "top 10 tour and travels in Himachal",
+        "top 10 treks in Himachal",
+        "top 10 manali tour packages",
+        "near taxi",
+        "taxi service",
+        "tour and travels",
+        "top taxi service",
+        "chandigarh to manali tour package",
+        "Hike The Himalaya",
+        "hike the himalaya shimla",
+        "best travel agency hike the himalaya"
+    ],
+};
+
 // Production level caching: Revalidate homepage every 1 hour
 export const revalidate = 3600;
 
@@ -74,6 +97,47 @@ export default async function Home() {
 
     return (
         <div className="bg-white">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Organization",
+                        "name": "Hike The Himalaya",
+                        "url": "https://hikethehimalaya.com",
+                        "logo": "https://hikethehimalaya.com/icon.png",
+                        "description": "Premium Himalayan experiences, tour packages, and taxi services in Himachal.",
+                        "contactPoint": {
+                            "@type": "ContactPoint",
+                            "telephone": "+91-XXXXXXXXXX",
+                            "contactType": "customer service",
+                            "areaServed": "IN",
+                            "availableLanguage": "en"
+                        },
+                        "sameAs": [
+                            "https://facebook.com/hikethehimalaya",
+                            "https://instagram.com/hikethehimalaya",
+                            "https://twitter.com/hikethehimalaya"
+                        ]
+                    })
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "WebSite",
+                        "name": "Hike The Himalaya",
+                        "url": "https://hikethehimalaya.com",
+                        "potentialAction": {
+                            "@type": "SearchAction",
+                            "target": "https://hikethehimalaya.com/tours?search={search_term_string}",
+                            "query-input": "required name=search_term_string"
+                        }
+                    })
+                }}
+            />
             {/* Hero Section - Added mt-20 to clear fixed navbar */}
             <section className="relative mt-9 h-[75vh] sm:h-[65vh] flex items-center justify-center overflow-hidden">
                 <HeroSlider

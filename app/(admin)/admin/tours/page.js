@@ -54,8 +54,11 @@ export default async function AdminToursPage() {
                                         {tour.destination}
                                     </div>
                                 </div>
-                                <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Actions</span>
+                                <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between gap-4">
+                                    <div className="flex flex-col">
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Manage Tour</span>
+                                        <span className="text-[9px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full mt-1">ID: {tour._id.toString().slice(-6)}</span>
+                                    </div>
                                     <TourActions tourId={tour._id.toString()} />
                                 </div>
                             </div>

@@ -40,6 +40,9 @@ const Navbar = () => {
                         <Link href="/vehicles" className="text-[11px] font-black uppercase tracking-widest text-gray-500 hover:text-blue-600 transition-colors" prefetch={true}>
                             Vehicles
                         </Link>
+                        <Link href="/blogs" className="text-[11px] font-black uppercase tracking-widest text-gray-500 hover:text-blue-600 transition-colors" prefetch={true}>
+                            Blog
+                        </Link>
                         <Link href="/contact" className="text-[11px] font-black uppercase tracking-widest text-gray-500 hover:text-blue-600 transition-colors" prefetch={true}>
                             Contact
                         </Link>

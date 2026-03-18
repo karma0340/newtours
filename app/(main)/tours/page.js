@@ -5,6 +5,22 @@ import Tour from "@/models/Tour";
 import TourHero from "@/components/TourHero";
 import TourCard from "@/components/TourCard";
 
+export const metadata = {
+    title: "Best Himachal Tour Packages 2026 | Affordable Travel Deals",
+    description: "Discover affordable Himachal tour packages including Manali, Shimla, and Spiti Valley. Book customized travel deals now.",
+    keywords: [
+        "Himachal tour packages",
+        "Manali tour package",
+        "Shimla Manali package",
+        "cheap Himachal tour packages",
+        "top 10 manali tour packages",
+        "top 10 treks in Himachal",
+        "tour and travels",
+        "Chandigarh to Manali tour package",
+        "Himalaya Trekking"
+    ],
+};
+
 // Force dynamic rendering to ensure we get the latest data
 export const dynamic = 'force-dynamic';
 

@@ -112,7 +112,7 @@ export default function TourForm({ initialData, isEdit }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-8 bg-white p-8 rounded-xl border border-gray-100 shadow-sm max-w-4xl">
+        <form onSubmit={handleSubmit} className="space-y-8 bg-white p-5 md:p-8 rounded-xl border border-gray-100 shadow-sm max-w-4xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
@@ -282,29 +282,29 @@ export default function TourForm({ initialData, isEdit }) {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Images (URLs)</label>
-                <div className="space-y-3">
+                <label className="block text-sm font-medium text-gray-700 mb-2 font-black uppercase tracking-widest text-[10px]">Tour Images (Recommended: 3+)</label>
+                <div className="space-y-4">
                     {formData.images.map((url, index) => (
-                        <div key={index} className="space-y-2">
+                        <div key={index} className="bg-gray-50 border border-gray-100 rounded-2xl p-4 md:p-5 space-y-4">
                             <div className="flex gap-2">
                                 <input
                                     type="text"
-                                    placeholder="Image URL or track uploaded file"
-                                    className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none placeholder-gray-500 bg-gray-50"
+                                    placeholder="Image URL"
+                                    className="flex-1 px-4 py-2 bg-white border border-gray-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500 font-medium"
                                     value={url}
-                                    readOnly
+                                    onChange={(e) => handleImageChange(index, e.target.value)}
                                 />
                                 <button
                                     type="button"
                                     onClick={() => removeImageField(index)}
-                                    className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg"
+                                    className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-colors"
                                 >
-                                    <Minus size={18} />
+                                    <Minus size={20} />
                                 </button>
                             </div>
-                            <div className="flex items-center gap-4">
-                                <label className="flex-1">
-                                    <div className="relative border-2 border-dashed border-gray-200 rounded-xl p-4 hover:border-blue-400 transition-colors cursor-pointer group flex items-center justify-center gap-2">
+                            <div className="flex flex-col sm:flex-row items-center gap-4">
+                                <label className="w-full">
+                                    <div className="relative border-2 border-dashed border-gray-200 rounded-xl p-6 hover:border-blue-400 transition-colors cursor-pointer group flex flex-col items-center justify-center gap-2 bg-white">
                                         <input
                                             type="file"
                                             className="absolute inset-0 opacity-0 cursor-pointer"
@@ -312,14 +312,16 @@ export default function TourForm({ initialData, isEdit }) {
                                             onChange={(e) => handleFileUpload(index, e.target.files[0])}
                                             disabled={uploading}
                                         />
-                                        <ImageIcon size={20} className="text-gray-400 group-hover:text-blue-500" />
-                                        <span className="text-sm font-medium text-gray-500 group-hover:text-blue-600">
-                                            {uploading ? "Uploading..." : "Upload from device"}
+                                        <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                            <ImageIcon size={20} />
+                                        </div>
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">
+                                            {uploading ? "Uploading..." : "Click to Upload Image"}
                                         </span>
                                     </div>
                                 </label>
                                 {url && (
-                                    <div className="w-16 h-16 relative rounded-lg overflow-hidden border border-gray-100 shadow-sm">
+                                    <div className="w-full sm:w-24 h-24 relative rounded-xl overflow-hidden border border-white shadow-lg shrink-0">
                                         <img src={url} alt="Preview" className="object-cover w-full h-full" />
                                     </div>
                                 )}
