@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import Providers from "@/components/Providers";
 
 const inter = Inter({
@@ -109,6 +110,7 @@ export default function RootLayout({ children }) {
         className={`${inter.variable} antialiased font-sans`} 
         suppressHydrationWarning
       >
+        <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
         <Providers>
           {children}
         </Providers>
